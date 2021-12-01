@@ -1,3 +1,7 @@
+"""
+Source: https://zetcode.com/pyqt6/tetris/
+Author: Jan Bodnar
+"""
 import sys, random
 from PyQt5.QtCore import QBasicTimer, Qt, pyqtSignal
 from PyQt5.QtGui import QColor, QPainter
