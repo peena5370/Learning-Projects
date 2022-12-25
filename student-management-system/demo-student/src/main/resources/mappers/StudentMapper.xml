@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.StudentMapper">
+	<resultMap id="result" type="student">
+		<result property="id" column="id" jdbcType="INTEGER"/>
+		<result property="studName" column="studname" jdbcType="VARCHAR"/>
+		<result property="dateOfBirth" column="dateofbirth" jdbcType="DATE"/>
+		<result property="studClass" column="class" jdbcType="VARCHAR"/>  
+		<result property="race" column="race" jdbcType="VARCHAR"/>
+		<result property="nationality" column="nationality" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="tb">student</sql>
+	<sql id="Base_Column_List">id, studname, dateofbirth, class, race, nationality</sql>
+	
+	<!-- Select student list -->
+	<select id="selectList" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+	</select>
+	
+	<select id="selectStudent" resultMap="result" parameterType="java.lang.Integer">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+		WHERE id=#{id, jdbcType=INTEGER};
+	</select>
+	
+	<!-- Insert student -->
+	<insert id="insertStudent" parameterType="student">
+		INSERT INTO 
+		<include refid="tb"/>
+		(studname, dateofbirth, class, race, nationality)
+		VALUES(#{studName, jdbcType=VARCHAR}, #{dateOfBirth, jdbcType=DATE}, #{studClass, jdbcType=VARCHAR}, #{race, jdbcType=BIGINT}, #{nationality, jdbcType=VARCHAR})
+	</insert>
+
+  
+	<!-- Update student -->
+	<update id="updateStudent" parameterType="student">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="studName != null">studname=#{studName, jdbcType=VARCHAR},</if>
+		<if test="dateOfBirth != null">dateofbirth=#{dateOfBirth, jdbcType=VARCHAR},</if>
+		<if test="studClass != null">class=#{studClass, jdbcType=VARCHAR},</if>
+		<if test="race != null">race=#{race, jdbcType=BIGINT},</if>
+		<if test="nationality != null">nationality=#{nationality, jdbcType=VARCHAR}</if>
+		</set>
+    	WHERE id=#{id, jdbcType=INTEGER};
+	</update>
+	
+	<!-- Delete student -->
+	<delete id="deleteStudent" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="tb"/>
+		WHERE id=#{id, jdbcType=INTEGER};
+	</delete>
+
+</mapper>
