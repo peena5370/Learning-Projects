@@ -8,11 +8,11 @@
 		<version>2.5.13</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.domaintest</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.student.demo</groupId>
+	<artifactId>demo-student</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>demo-student</name>
+	<description>Student Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -25,42 +25,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<!-- ThymeLeaf dependency, if there are more template view here, please comment the template dependency that no been used to prevent error occur.
-			 Either choose thymeleaf dependency here or jsp dependency here here -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<!-- lombok -->
-		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		</dependency>
-		<!--tomcat and jstl used to jsp template -->
-		<!-- dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>provided</scope>
-		</dependency -->
-		<!-- dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-		</dependency -->
-		<!-- 添加swagger2相关功能 -->
-	   	<dependency>
-	   		<groupId>io.springfox</groupId>
-	   		<artifactId>springfox-swagger2</artifactId>
-	   		<version>2.9.2</version>
-	   	</dependency>
-	   	<!-- 添加swagger-ui相关功能 -->
-	   	<dependency>
-	   		<groupId>io.springfox</groupId>
-	   		<artifactId>springfox-swagger-ui</artifactId>
-	   		<version>2.9.2</version>
-	   	</dependency>
-	   	<!-- for auto restart spring boot application use -->
-	   	<!-- 引入该依赖即可开启热部署 -->
+		</dependency>	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -70,21 +35,29 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Thymeleaf dependency -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!-- lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- Mybatis -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>2.2.2</version>
 		</dependency>
+		<!-- Mariadb JDBC client -->
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>	
 	</dependencies>
 
 	<build>
