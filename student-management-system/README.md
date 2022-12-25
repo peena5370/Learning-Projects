@@ -4,7 +4,7 @@ A simple student management system which developed for educational purpose.</br>
 
 ### Tools & Frameworks needed:
 | Details | Tools/Framework |
-| :------: | :-------------: |
+| :------ | :-------------: |
 | Back-end | Spring Boot |
 | Database | MySQL |
 | Mapping framework | MyBatis |
