@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
 
+/**
+* Student controller with @RestController.
+* 
+* @author Caronline Lee
+* Created on 12-05-2022
+**/
 @RestController
 @RequestMapping("/student")
 public class StudentController {
