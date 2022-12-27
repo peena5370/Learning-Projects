@@ -1,7 +1,6 @@
-//Function view student table
+// Function view student table
 function viewStudent(table) {
     $.getJSON($contextPath + 'student/list', function(resp) {
-  // $.getJSON('http://localhost:8000/spring-boot-demo/student/list', function(resp) {
     var $table = $(table);
     $(function() {
       var data = resp;
@@ -40,7 +39,6 @@ function submitStudent() {
   $.ajax({
     type: "POST",
     url: $contextPath + "student/insert",
-    // url: "http://localhost:8000/spring-boot-demo/student/insert",
     contentType: "application/json; charset=utf-8",
     data: JSON.stringify(data),
     success: function (resp) {
@@ -67,7 +65,6 @@ function submitStudent() {
 // Function load edit student information
 function editStudent(id) {
   $.getJSON($contextPath + 'student/list/' + id, function(resp){
-    // $.getJSON('http://localhost:8000/spring-boot-demo/student/list/' + id, function(resp){
     $("#Modal2 input[name='id']").val(resp.id);
     $("#Modal2 input[name='stud-name']").val(resp.studName);
     $("#Modal2 input[name='dob']").val(resp.dateOfBirth);
@@ -92,7 +89,6 @@ function submitEditStudent() {
   $.ajax({
     type: "PUT",
     url: $contextPath + "student/" + data.id + "/update",
-    // url: "http://localhost:8000/spring-boot-demo/student/" + data.id + "/update",
     contentType: "application/json; charset=utf-8",
     data: JSON.stringify(data),
     success: function (resp) {
@@ -121,7 +117,6 @@ function removeStudent(id) {
   $.ajax({
     type: "DELETE",
     url: $contextPath + "student/" + id + "/delete",
-    // url: "http://localhost:8000/spring-boot-demo/student/" + id + "/delete",
     contentType: "application/json; charset=utf-8",
     success: function (res) {
       switch(res) {
