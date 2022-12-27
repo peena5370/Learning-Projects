@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/bootstrap-table.min.css}">
+  <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+  <script th:inline="javascript"> var $contextPath = /*[[@{/}]]*/ ''; </script>
+  <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/js/bootstrap-table.min.js}"></script>
+  <script th:src="@{/js/main.js}"></script>
+</head>
+<body>
+  <div class="container">
+    <button type="button" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#Modal1">
+      Add Student
+    </button>
+    <table id="StudentTable" class="table table-striped">
+    </table>
+  </div>
+
+  <!-- Modal add student -->
+  <div class="modal fade" id="Modal1" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Add Student Modal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="stud-name" class="col-form-label">Student Name</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control" name="stud-name" required/>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="dob" class="col-form-label">Date Of Birth</label>
+              </div>
+              <div class="col-auto">
+                <input type="date" class="form-control" name="dob" required/>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="class" class="col-form-label">Class room</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control" name="class" required/>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="race" class="col-form-label">Race</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control" name="race" required/>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="nationality" class="col-form-label">Nationality</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control" name="nationality" required/>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="javascript:submitStudent();">Submit</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Edit student -->
+  <div class="modal fade" id="Modal2" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Edit Student Modal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="id" class="col-form-label">ID</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control" name="id" required/>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="stud-name" class="col-form-label">Student Name</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control" name="stud-name" required/>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="dob" class="col-form-label">Date Of Birth</label>
+              </div>
+              <div class="col-auto">
+                <input type="date" class="form-control" name="dob" required/>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="class" class="col-form-label">Class room</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control" name="class" required/>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="race" class="col-form-label">Race</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control" name="race" required/>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <label for="nationality" class="col-form-label">Nationality</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control" name="nationality" required/>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="javascript:submitEditStudent();">Submit</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script th:inline="javascript">
+    $(document).ready(function() {
+        viewStudent('#StudentTable');
+      });
+  </script>
+</body>
+</html>
