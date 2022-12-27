@@ -5,4 +5,6 @@ It consist of the projects such as from a simple html page, game, tools, and the
 This file will grow bigger based on my learning path, hence it will be updated when there's a free time :)
 
 Currently available projects:
-* 2048 
+* 2048 game developed with HTML, CSS and Javascript
+* Tetris game developed with Python
+* Student management system developed using Spring Boot, Mybatis
