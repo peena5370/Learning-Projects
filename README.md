@@ -7,4 +7,5 @@ This file will grow bigger based on my learning path, hence it will be updated w
 Currently available projects:
 * 2048 game developed with HTML, CSS and Javascript
 * Tetris game developed with Python
+* Application of moving XML files
 * Student management system developed using Spring Boot, Mybatis
