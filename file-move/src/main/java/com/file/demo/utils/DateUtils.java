@@ -10,7 +10,7 @@ public class DateUtils {
 	 * Regex method for string
 	 * @param value	String value
 	 * @param regex Regex string which may consists of different format
-	 * @return boolean
+	 * @return response from regex which includes boolean and matched string
 	 */
 	public RegexResponse dateMatcher(String value, String regex) {
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
