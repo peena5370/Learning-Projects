@@ -29,11 +29,11 @@ Example Java import:
 
 ```java
 import java.io.File;
-import com.tispackages.SoapTIS;
+import com.learning.demo;
 
-public class TISInterface {
+public class MainApplication {
   public static void main(String[] args) {
-    SoapTIS.functName();
+    ClassObj.output();
   }
 } 
 ```

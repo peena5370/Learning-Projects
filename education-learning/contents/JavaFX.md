@@ -16,22 +16,22 @@ public class FXInterface extends Application {
   
   @Override
   public void start(Stage primaryStage) throws Exception {
-  //creating a Group object
-  Group group = new Group();
-  //Creating a Scene by passing the group object, setting window height and width   
-  Scene scene = new Scene(group ,600, 300); 
+   //creating a Group object
+   Group group = new Group();
+   //Creating a Scene by passing the group object, setting window height and width   
+   Scene scene = new Scene(group ,600, 300); 
 
-  //setting color to the scene 
-  scene.setFill(Color.WHITE);
+   //setting color to the scene 
+   scene.setFill(Color.WHITE);
 
-  //Setting the title to Stage.
-  primaryStage.setTitle("Sample Application");
+   //Setting the title to Stage.
+   primaryStage.setTitle("Sample Application");
 
-  //Adding the scene to Stage 
-  primaryStage.setScene(scene);
+   //Adding the scene to Stage 
+   primaryStage.setScene(scene);
 
-  //Displaying the contents of the stage 
-  primaryStage.show(); 
+   //Displaying the contents of the stage 
+   primaryStage.show(); 
   }
 }
 ```
