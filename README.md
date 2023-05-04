@@ -1,6 +1,6 @@
 # __My Programming Learning Outcomes__
 
-* Tools & Technologies:
+* Tools & Technologies used:
 
 ![Language](https://img.shields.io/badge/Java-1.8-blue.svg) 
 ![Language](https://img.shields.io/badge/Java-17-yellow.svg) 
@@ -23,18 +23,16 @@
 ![Database](https://img.shields.io/badge/MariaDB---9cf.svg)
 
 * Understanding the development of responsive and dynamic web sites, web games, form and data validations.
-* Front-end + back-end desktop and dynamic web applications development.
-* Object-Oriented software approached during development software.
-* Using Java swing, JavaFX to develop desktop applications.
-* XML DOM, SOAP web services, servlet, Spring MVC.
-* Excel files read and write method using Java.
+* Front-end and back-end web application development.
+* Using Java Swing/JavaFX to develop desktop applications.
 * Database operations, SQL, PL/SQL, Java + MySQL, PHP + MySQL, Python Django
+* XML DOM, SOAP web services, Java Servlet, Spring MVC/Spring Boot.
+* Excel files read and write method using Java.
 * Understanding the concepts of data structures and algorithms
-* Thinking Skills and Problem Solving Methods
-* Understanding the basic concepts of information technology
+* Object-Oriented software approached during development software.
 * Software requirements and software engineering
 * Computer architecture and memory allocations
-* Network security
 * Understanding various types of operating systems, LINUX, Windows, Mac OS
+* Network Security
 * Spring Security password hashing methods
 * Servlet Filters and Spring Interceptors
