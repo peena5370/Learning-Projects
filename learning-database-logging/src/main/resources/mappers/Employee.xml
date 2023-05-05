@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "com.learning.demo.databases.model.Employee">
+
+	 <!-- INSERT Method -->
+   <insert id = "insert">
+      INSERT INTO employee (e_name, branch, percentage, e_phone, e_email) 
+      VALUES (#{e_name}, #{branch}, #{percentage}, #{e_phone}, #{e_email});
+			
+      <selectKey keyProperty = "eid" resultType = "int" order = "AFTER">
+         select last_insert_id() as eid
+      </selectKey>
+   </insert>
+   
+   <!-- READ Method -->
+   <resultMap id = "result" type = "com.learning.demo.databases.model.Employee">
+      <result property = "eid" column = "eid"/>	    
+   </resultMap>
+	
+   <select id = "getAll" resultMap = "result">
+      SELECT * FROM employee; 
+   </select>
+    
+   <select id = "getById" parameterType = "int" resultMap = "result">
+      SELECT * FROM employee WHERE eid = #{eid};
+   </select>
+   
+   <!-- UPDATE Method -->
+   <resultMap id = "up_result" type = "com.learning.demo.databases.model.Employee">
+      <result property = "eid" column = "eid"/>
+      <result property = "e_name" column = "e_name"/>
+      <result property = "branch" column = "branch"/>
+      <result property = "percentage" column = "percentage"/>
+      <result property = "e_phone" column = "e_phone"/>
+      <result property = "e_email" column = "e_email"/>
+   </resultMap>
+    
+   <select id = "getEmpId" parameterType = "int" resultMap = "up_result">
+      SELECT * FROM employee WHERE eid = #{eid};
+   </select>
+  	
+   <update id = "empUpdate" parameterType = "com.learning.demo.databases.model.Employee">
+      UPDATE employee SET e_name = #{e_name}, 
+         branch = #{branch}, 
+         percentage = #{percentage}, 
+         e_phone = #{e_phone}, 
+         e_email = #{e_email} 
+      WHERE eid = #{eid};
+   </update>
+   
+   <!-- DELETE Method -->
+   <delete id = "deleteById" parameterType = "int">
+      DELETE from employee WHERE eid = #{eid};
+   </delete>
+   
+   <!-- Store Procedure Method -->
+   <select id = "callById" resultMap = "result" parameterType = "com.learning.demo.databases.model.Employee" statementType = "CALLABLE">
+      {call read_recordById(#{eid, mode=IN, jdbcType=INTEGER})}
+   </select>
+   
+   <!-- Dynamic SQL Method -->
+   <select id = "getRecByName" parameterType = "com.learning.demo.databases.model.Employee" resultType = "com.learning.demo.databases.model.Employee">
+      SELECT * FROM employee 
+      <if test = "e_name != null">
+         WHERE e_name LIKE #{e_name}
+      </if>
+   </select>
+</mapper>
