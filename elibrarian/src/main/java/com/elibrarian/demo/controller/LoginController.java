@@ -23,33 +23,8 @@ public class LoginController {
 	@Autowired
 	private UsersService usersService;
 	
-//	private LibrariansRepository librarianRepository;
-	
 	@PostMapping("/login")
 	public ResponseEntity<String> login(@RequestBody UsersEntity user) {
-//		Librarian librarian = new Librarian(2, "lib name one two", "libmail1@email.com", "password123", "secretkey123", "1234567890");
-		
-		// insert to table is id not exist, else update the table if id exist
-//		librarianRepository.save(librarian);
-//		librarianRepository.flush();
-		
-//		Librarian librarian2 = new Librarian(3, "lib name one two1", "libmail1@email.com", "password123", "secretkey123", "1234567890");
-//		Librarian librarian3 = new Librarian(4, "lib name one two2", "libmail1@email.com", "password123", "secretkey123", "1234567890");
-//		Librarian librarian4 = new Librarian(5, "lib name one two3", "libmail1@email.com", "password123", "secretkey123", "1234567890");
-		
-		// insert all to table, similar as save() method
-//		librarianRepository.saveAll(Stream.of(librarian2, librarian3, librarian4).collect(Collectors.toList()));
-//		librarianRepository.flush();
-//		List<LibrariansEntity> list = librarianRepository.findAll();
-//		
-//		for(LibrariansEntity libra: list) {
-//			System.out.println("librarian: " + libra);
-//		}
-		
-//		Optional<Librarian> lib = librarianRepository.findById(3);
-		
-//		return list;
-		
 		Optional<UsersEntity> userEntity = usersService.viewUserByUsername(user.getUsername());
 		
 		if(!userEntity.isPresent()) {
