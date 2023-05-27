@@ -23,22 +23,22 @@ public class IssueBooksController {
 	@Autowired
 	private IssueBooksService issueBooksService;
 	
-	@PostMapping("/addissuebook")
+	@PostMapping
 	public ResponseEntity<IssueBooksEntity> issueBook(@RequestBody IssueBooksEntity issueBook) {
 		return ResponseEntity.ok(issueBooksService.issueBook(issueBook));
 	}
 	
-	@GetMapping("/viewissuebook")
+	@GetMapping
 	public ResponseEntity<List<IssueBooksEntity>> viewIssueBooks() {
 		return ResponseEntity.ok(issueBooksService.viewIssueBooks());
 	}
 	
-	@GetMapping("/viewissuebook/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<IssueBooksEntity>> viewIssueBooksById(@PathVariable Integer id) {
 		return ResponseEntity.ok(issueBooksService.viewIssueBookById(id));
 	}
 	
-	@PutMapping("/returnbook")
+	@PutMapping("/{id}")
 	public ResponseEntity<IssueBooksEntity> returnBook(@RequestBody IssueBooksEntity issueBook) {
 		return ResponseEntity.ok(issueBooksService.returnBook(issueBook));
 	}

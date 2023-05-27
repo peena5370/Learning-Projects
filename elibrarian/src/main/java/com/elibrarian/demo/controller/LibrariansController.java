@@ -24,27 +24,27 @@ public class LibrariansController {
 	@Autowired
 	private LibrariansService librariansService;
 	
-	@PostMapping("/addlibrarian")
+	@PostMapping
 	public ResponseEntity<LibrariansEntity> addLibrarian(@RequestBody LibrariansEntity librarian) {
 		return ResponseEntity.ok(librariansService.addLibrarian(librarian));
 	}
 	
-	@GetMapping("/viewlibrarian")
+	@GetMapping
 	public ResponseEntity<List<LibrariansEntity>> viewLibrarians() {
 		return ResponseEntity.ok(librariansService.viewLibrarians());
 	}
 	
-	@GetMapping("/viewlibrarian/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<LibrariansEntity>> viewLibrarianById(@PathVariable Integer id) {
 		return ResponseEntity.ok(librariansService.viewLibrarianById(id));
 	}
 	
-	@PutMapping("/updatelibrarian")
+	@PutMapping("/{id}")
 	public ResponseEntity<LibrariansEntity> updateLibrarian(@RequestBody LibrariansEntity librarian) {
 		return ResponseEntity.ok(librariansService.updateLibrarian(librarian));
 	}
 	
-	@DeleteMapping("/deletelibrarian/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Integer> removeLibrarian(@PathVariable Integer id) {
 		return ResponseEntity.ok(librariansService.removeLibrarian(id));
 	}

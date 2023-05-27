@@ -24,27 +24,27 @@ public class UsersController {
 	@Autowired
 	private UsersService usersService;
 	
-	@PostMapping("/adduser")
+	@PostMapping
 	public ResponseEntity<UsersEntity> addUser(@RequestBody UsersEntity user) {
 		return ResponseEntity.ok(usersService.addUser(user));
 	}
 	
-	@GetMapping("/viewuser")
+	@GetMapping
 	public ResponseEntity<List<UsersEntity>> viewUsers() {
 		return ResponseEntity.ok(usersService.viewUsers());
 	}
 	
-	@GetMapping("/viewuser/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<UsersEntity>> viewUserById(@PathVariable Integer id) {
 		return ResponseEntity.ok(usersService.viewUserById(id));
 	}
 	
-	@PutMapping("/updateuser")
+	@PutMapping("/{id}")
 	public ResponseEntity<UsersEntity> updateUser(@RequestBody UsersEntity user) {
 		return ResponseEntity.ok(usersService.updateUser(user));
 	}
 	
-	@DeleteMapping("/deleteuser/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Integer> removeUser(@PathVariable Integer id) {
 		return ResponseEntity.ok(usersService.removeUser(id));
 	}

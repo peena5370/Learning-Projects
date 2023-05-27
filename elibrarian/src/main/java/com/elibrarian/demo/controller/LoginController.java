@@ -1,6 +1,9 @@
 package com.elibrarian.demo.controller;
 
+//import java.util.List;
 import java.util.Optional;
+//import java.util.stream.Collectors;
+//import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +25,7 @@ public class LoginController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<String> login(@RequestBody UsersEntity user) {
+		
 		Optional<UsersEntity> userEntity = usersService.viewUserByUsername(user.getUsername());
 		
 		if(!userEntity.isPresent()) {

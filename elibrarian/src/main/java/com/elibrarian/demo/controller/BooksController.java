@@ -24,27 +24,27 @@ public class BooksController {
 	@Autowired
 	private BooksService booksService;
 	
-	@PostMapping("/addbook")
+	@PostMapping
 	public ResponseEntity<BooksEntity> addBook(@RequestBody BooksEntity book) {
 		return ResponseEntity.ok(booksService.addBook(book));
 	}
 	
-	@GetMapping("/viewbooks")
+	@GetMapping
 	public ResponseEntity<List<BooksEntity>> viewBooks() {
 		return ResponseEntity.ok(booksService.viewBooks());
 	}
 	
-	@GetMapping("/viewbooks/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<BooksEntity>> viewBookById(@PathVariable Integer id) {
 		return ResponseEntity.ok(booksService.viewBookById(id));
 	}
 	
-	@PutMapping("/updatebook")
+	@PutMapping("/{id}")
 	public ResponseEntity<BooksEntity> updateBook(@RequestBody BooksEntity book) {
 		return ResponseEntity.ok(booksService.updateBook(book));
 	}
 	
-	@DeleteMapping("/deletebook/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Integer> removeBook(@PathVariable Integer id) {
 		return ResponseEntity.ok(booksService.removeBook(id));
 	}

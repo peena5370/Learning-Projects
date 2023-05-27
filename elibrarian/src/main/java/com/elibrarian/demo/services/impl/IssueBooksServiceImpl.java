@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.elibrarian.demo.model.BooksEntity;
 import com.elibrarian.demo.model.IssueBooksEntity;
+import com.elibrarian.demo.repos.BooksRepository;
 import com.elibrarian.demo.repos.IssueBooksRepository;
 import com.elibrarian.demo.services.IssueBooksService;
 
@@ -14,13 +16,34 @@ import com.elibrarian.demo.services.IssueBooksService;
 public class IssueBooksServiceImpl implements IssueBooksService {
 	
 	@Autowired
+	private BooksRepository booksRepository;
+	
+	@Autowired
 	private IssueBooksRepository issueBooksRepository;
 
 	@Override
 	public IssueBooksEntity issueBook(IssueBooksEntity issueBook) {
-		IssueBooksEntity savedEntity = issueBooksRepository.save(issueBook);
-		issueBooksRepository.flush();
-		
+		Optional<BooksEntity> book = booksRepository.findById(issueBook.getBooks().getBook_id());
+		IssueBooksEntity savedEntity = null;
+		if(book.isPresent()) {
+			BooksEntity bookEntity = book.get();
+			if(bookEntity.getBookissued() >= bookEntity.getBookquantity()) {
+				return null;
+			} else {
+				BooksEntity updateBookIssue = new BooksEntity();
+				updateBookIssue.setBook_id(bookEntity.getBook_id());
+				updateBookIssue.setCallno(bookEntity.getCallno());
+				updateBookIssue.setBookname(bookEntity.getBookname());
+				updateBookIssue.setAuthor(bookEntity.getAuthor());
+				updateBookIssue.setBookquantity(bookEntity.getBookquantity());
+				updateBookIssue.setBookissued(bookEntity.getBookissued() + 1);
+				booksRepository.saveAndFlush(updateBookIssue);
+
+				savedEntity = issueBooksRepository.save(issueBook);
+				issueBooksRepository.flush();
+			}
+		}
+
 		return savedEntity;
 	}
 
@@ -36,8 +59,27 @@ public class IssueBooksServiceImpl implements IssueBooksService {
 
 	@Override
 	public IssueBooksEntity  returnBook(IssueBooksEntity issueBook) {
-		IssueBooksEntity updatedEntity = issueBooksRepository.save(issueBook);
-		issueBooksRepository.flush();
+		Optional<BooksEntity> book = booksRepository.findById(issueBook.getBooks().getBook_id());
+		IssueBooksEntity updatedEntity = null;
+		
+		if(book.isPresent()) {
+			BooksEntity bookEntity = book.get();
+			if(bookEntity.getBookissued()==0) {
+				return null;
+			} else {
+				BooksEntity updateBookIssue = new BooksEntity();
+				updateBookIssue.setBook_id(bookEntity.getBook_id());
+				updateBookIssue.setCallno(bookEntity.getCallno());
+				updateBookIssue.setBookname(bookEntity.getBookname());
+				updateBookIssue.setAuthor(bookEntity.getAuthor());
+				updateBookIssue.setBookquantity(bookEntity.getBookquantity());
+				updateBookIssue.setBookissued(bookEntity.getBookissued() - 1);
+				booksRepository.saveAndFlush(updateBookIssue);
+
+				updatedEntity = issueBooksRepository.save(issueBook);
+				issueBooksRepository.flush();
+			}
+		}
 		
 		return updatedEntity;
 	}
