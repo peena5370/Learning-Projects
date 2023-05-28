@@ -18,10 +18,7 @@ public class BooksServiceImpl implements BooksService {
 
 	@Override
 	public BooksEntity addBook(BooksEntity book) {
-		BooksEntity savedEntity = booksRepository.save(book);
-		booksRepository.flush();
-		
-		return savedEntity;
+		return booksRepository.saveAndFlush(book);
 	}
 
 	@Override
@@ -36,10 +33,7 @@ public class BooksServiceImpl implements BooksService {
 
 	@Override
 	public BooksEntity updateBook(BooksEntity book) {
-		BooksEntity updatedEntity = booksRepository.save(book);
-		booksRepository.flush();
-		
-		return updatedEntity;
+		return booksRepository.saveAndFlush(book);
 	}
 
 	@Override

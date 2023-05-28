@@ -18,10 +18,7 @@ public class StudentsServiceImpl implements StudentsService {
 	
 	@Override
 	public StudentsEntity addStudent(StudentsEntity student) {
-		StudentsEntity savedEntity = studentsRepository.save(student);
-		studentsRepository.flush();
-		
-		return savedEntity;
+		return studentsRepository.saveAndFlush(student);
 	}
 
 	@Override
@@ -36,10 +33,7 @@ public class StudentsServiceImpl implements StudentsService {
 
 	@Override
 	public StudentsEntity updateStudent(StudentsEntity student) {
-		StudentsEntity updatedEntity = studentsRepository.save(student);
-		studentsRepository.flush();
-		
-		return updatedEntity;
+		return studentsRepository.saveAndFlush(student);
 	}
 
 	@Override

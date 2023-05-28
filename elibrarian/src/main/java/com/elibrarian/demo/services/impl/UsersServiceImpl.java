@@ -18,10 +18,7 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public UsersEntity addUser(UsersEntity user) {
-		UsersEntity savedEntity = usersRepository.save(user);
-		usersRepository.flush();
-		
-		return savedEntity;
+		return usersRepository.saveAndFlush(user);
 	}
 
 	@Override
@@ -41,10 +38,7 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public UsersEntity updateUser(UsersEntity user) {
-		UsersEntity updatedEntity = usersRepository.save(user);
-		usersRepository.flush();
-		
-		return updatedEntity;
+		return usersRepository.saveAndFlush(user);
 	}
 
 	@Override

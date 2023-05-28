@@ -18,10 +18,7 @@ public class LibrariansServiceImpl implements LibrariansService {
 	
 	@Override
 	public LibrariansEntity addLibrarian(LibrariansEntity librarian) {
-		LibrariansEntity savedEntity = librariansRepository.save(librarian);
-		librariansRepository.flush();
-		
-		return savedEntity;
+		return librariansRepository.saveAndFlush(librarian);
 	}
 
 	@Override
@@ -36,10 +33,7 @@ public class LibrariansServiceImpl implements LibrariansService {
 
 	@Override
 	public LibrariansEntity updateLibrarian(LibrariansEntity librarian) {
-		LibrariansEntity updatedEntity = librariansRepository.save(librarian);
-		librariansRepository.flush();
-		
-		return updatedEntity;
+		return librariansRepository.saveAndFlush(librarian);
 	}
 
 	@Override
