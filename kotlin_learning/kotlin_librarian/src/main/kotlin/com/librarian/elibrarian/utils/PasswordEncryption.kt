@@ -14,7 +14,7 @@ class PasswordEncryption {
     private val iterations: Int = 10000
     private val keyLength: Int = 256
 
-    public fun getSaltValue(length: Int): String {
+    fun getSaltValue(length: Int): String {
         val finalVal: StringBuilder = StringBuilder(length)
 
         for(i in 0..length) {
@@ -40,7 +40,7 @@ class PasswordEncryption {
         }
     }
 
-    public fun generateSecurePassword(password: String, salt: String): String {
+    fun generateSecurePassword(password: String, salt: String): String {
         var finalVal: String? = null
         val securePassword: ByteArray = hash(password.toCharArray(), salt.toByteArray())
         finalVal = Base64.getEncoder().encodeToString(securePassword)
@@ -69,7 +69,7 @@ class PasswordEncryption {
         return verifyUserPassword(password, hashedPassword, hashedSecretKey)
     }
 
-    public fun userAuthentication(password: String, hashedPassword: String, hashedSecretKey: String): Boolean {
+    fun userAuthentication(password: String, hashedPassword: String, hashedSecretKey: String): Boolean {
         return verifyUserPassword(password, hashedPassword, hashedSecretKey)
     }
 }
