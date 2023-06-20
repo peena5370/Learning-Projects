@@ -1,20 +1,18 @@
 package com.librarian.elibrarian.model
 
 import jakarta.persistence.*
-import lombok.Data
 
-@Data
 @Entity
-@Table(name="e_student")
+@Table(name="e_students")
 data class Student(
         @Id
         @GeneratedValue(strategy= GenerationType.IDENTITY)
         @Column(name="stud_id")
-        val studId: Int,
+        var studId: Int,
         @Column(name="stud_name", nullable=false)
-        val studName: String,
+        var studName: String?,
         @Column(name="stud_phone")
-        val studPhone: String,
+        var studPhone: String?,
         @Column(name="stud_email")
-        val studEmail: String
+        var studEmail: String?
 )

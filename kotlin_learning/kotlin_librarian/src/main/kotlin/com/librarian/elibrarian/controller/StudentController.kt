@@ -12,9 +12,8 @@ import java.util.*
 class StudentController(@Autowired private val studentService: StudentService) {
 
     @PostMapping
-    fun addStudent(@RequestBody student: Student): ResponseEntity<Student> {
-        return ResponseEntity.ok(studentService.create(student))
-    }
+    fun addStudent(@RequestBody student: Student): ResponseEntity<Student> =
+        ResponseEntity.ok(studentService.create(student))
 
     @GetMapping
     fun getList(): ResponseEntity<List<Student>> =
