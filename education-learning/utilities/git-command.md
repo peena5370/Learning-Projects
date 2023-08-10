@@ -48,6 +48,9 @@ Agent pid 123456
 6. Once ssh-agent is running, run the following command to add new SSH key to the local SSH agent
 ```bash
 > ssh-add -K "local file path that previously save the SSH key"
+
+# for Windows
+> ssh-add "local file path that previously save the SSH key"
 ```
 
 ## 5.0 Create an online repository at Github
