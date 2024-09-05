@@ -45,7 +45,7 @@ user.name=abcdefg
 > eval "$(ssh-agent -s)"
 Agent pid 123456
 ```
-6. Once ssh-agent is running, run the following command to add new SSH key to the local SSH agent
+6. Once ssh-agent is running, run the following command to add new SSH key to the local SSH agent, it will prompt for insert PIN number from authenticator if the account have setting up MFA. (Remove the -K for linux environment from prompting to request PIN number)
 ```bash
 > ssh-add -K "local file path that previously save the SSH key"
 
