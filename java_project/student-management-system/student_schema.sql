@@ -10,6 +10,3 @@ CREATE TABLE `student`(
     `nationality` VARCHAR(50) NULL,
     PRIMARY KEY(`id`)
 )ENGINE=INNODB;
-
--- Insert default value into table
-INSERT INTO `student` VALUES(1, 'Jessica Loh', '2012-02-15', '6RED', 'Chinese', 'Malaysia');

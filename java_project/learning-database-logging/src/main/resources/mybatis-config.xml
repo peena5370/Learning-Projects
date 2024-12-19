@@ -9,8 +9,8 @@
 			
          <dataSource type = "POOLED">
             <property name = "driver" value = "com.mysql.cj.jdbc.Driver"/>
-            <property name = "url" value = "jdbc:mysql://localhost:6036/demo_db"/>
-            <property name = "username" value = "root"/>
+            <property name = "url" value = "jdbc:mysql://localhost:3306/demo_db"/>
+            <property name = "username" value = "user"/>
             <property name = "password" value = "password"/>
          </dataSource>   
          
