@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="resources.mappers.Payroll">
+	<resultMap id="result" type="Payroll">
+	     <result property="id" column="pr_id" jdbcType="INTEGER"/>
+	     <result property="overtimepay" column="overtimepay" jdbcType="DECIMAL"/>
+	     <result property="deduction" column="deduction" jdbcType="DECIMAL"/>
+	     <result property="total" column="totalamount" jdbcType="DECIMAL"/>
+	     <result property="issueDate" column="issuedate" jdbcType="DATE"/>
+	     <result property="baseSalary" column="basesalary" jdbcType="DECIMAL"/>
+	     <result property="employeeName" column="employeename" jdbcType="VARCHAR"/>
+	     <result property="approver" column="approver" jdbcType="VARCHAR"/>  
+	</resultMap>
+	<sql id="tb">tbl_payroll</sql>
+	<sql id="Base_Column_List">
+	pr_id, totalamount, overtimepay, deduction, issuedate, basesalary, 
+	tbl_employee.e_fullname AS employeename, tbl_manager.m_fullname AS approver
+	</sql>
+	<!-- List all payroll -->
+	<select id="getPayRollListByManager" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>, tbl_employee, tbl_manager
+		WHERE tbl_payroll.e_id=tbl_employee.e_id AND tbl_payroll.m_id=tbl_manager.m_id
+		GROUP BY pr_id;
+	</select>
+	<!-- List all payroll -->
+	<select id="getPayRollListByEmployee" resultMap="result" parameterType="String">
+		SELECT
+		pr_id, totalamount, overtimepay, deduction, issuedate, basesalary, tbl_manager.m_fullname AS approver
+		FROM
+		<include refid="tb"/>, tbl_employee, tbl_manager
+		WHERE tbl_payroll.e_id=tbl_employee.e_id AND tbl_payroll.m_id=tbl_manager.m_id AND 
+		tbl_payroll.e_id=(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeename, jdbcType=VARCHAR})
+		GROUP BY issuedate;
+	</select>
+	<!-- Insert monthly salary -->
+	<insert id="insertPayroll" parameterType="Payroll">
+		INSERT INTO 
+		<include refid="tb"/>
+		(totalamount, overtimepay, deduction, issuedate, basesalary, e_id, m_id)
+		VALUES(#{total, jdbcType=DECIMAL}, #{overtimepay, jdbcType=DECIMAL}, #{deduction, jdbcType=DECIMAL}, #{issueDate, jdbcType=DATE}, #{baseSalary, jdbcType=DECIMAL},
+		(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR}),
+		(SELECT m_id FROM tbl_manager WHERE m_fullname=#{approver, jdbcType=VARCHAR}));
+	</insert>
+</mapper>

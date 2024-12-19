@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="v2.com.company.payroll.mapper.EmployeePromotionMapper">
+	<resultMap id="result" type="employeePromotion">
+    <result property="id" column="p_id" jdbcType="INTEGER"/>
+    <result property="previousSalary" column="previoussalary" jdbcType="DECIMAL"/>
+    <result property="promoteSalary" column="promotesalary" jdbcType="DECIMAL"/>
+    <result property="promoteDate" column="promotedate" jdbcType="DATE"/>
+    <result property="promoteTitle" column="title" jdbcType="VARCHAR"/>  
+    <result property="employeeName" column="employeename" jdbcType="VARCHAR"/>
+    <result property="approver" column="approver" jdbcType="VARCHAR"/>  
+	</resultMap>
+	<sql id="tb">tbl_employeepromotion</sql>
+	<sql id="Base_Column_List">
+	p_id, previoussalary, promotesalary, promotedate, tbl_title.t_titlename AS title, tbl_employee.e_fullname AS employeename, tbl_manager.m_fullname AS approver
+	</sql>
+	<!-- List all promotion -->
+	<select id="getAllPromotion" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>, tbl_title, tbl_employee, tbl_manager
+		WHERE tbl_employeepromotion.t_id=tbl_title.t_id AND tbl_employeepromotion.e_id=tbl_employee.e_id AND tbl_employeepromotion.m_id=tbl_manager.m_id;
+	</select>
+	<!-- List promotion by Id -->
+	<select id="getPromotionById" resultMap="result" parameterType="java.lang.Integer">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>, tbl_title, tbl_employee, tbl_manager
+		WHERE tbl_employeepromotion.t_id=tbl_title.t_id AND tbl_employeepromotion.e_id=tbl_employee.e_id AND tbl_employeepromotion.m_id=tbl_manager.m_id AND p_id=#{id, jdbcType=INTEGER};
+	</select>
+	<!-- Insert promotion -->
+	<insert id="insertPromotion" parameterType="employeePromotion">
+		INSERT INTO 
+		<include refid="tb"/>
+		(previoussalary, promotesalary, promotedate, t_id, e_id, m_id)
+		VALUES(#{previousSalary, jdbcType=DECIMAL}, #{promoteSalary, jdbcType=DECIMAL}, #{promoteDate, jdbcType=DATE}, 
+		(SELECT t_id FROM tbl_title WHERE t_titlename=#{promoteTitle, jdbcType=VARCHAR}),
+		(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR}), 
+		(SELECT m_id FROM tbl_manager WHERE m_fullname=#{approver, jdbcType=VARCHAR}));
+	</insert>
+	<!-- Edit promotion info -->
+	<update id="editPromotion" parameterType="employeePromotion">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="previousSalary != null">previoussalary=#{previousSalary, jdbcType=DECIMAL},</if>
+		<if test="promoteSalary != null">promotesalary=#{promoteSalary, jdbcType=DECIMAL},</if>
+		<if test="promoteDate != null">promotedate=#{promoteDate, jdbcType=DATE},</if>
+		<if test="promoteTitle != null">t_id=(SELECT t_id FROM tbl_title WHERE t_titlename=#{promoteTitle, jdbcType=VARCHAR}),</if>
+		<if test="employeeName != null">e_id=(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR}),</if>
+		<if test="approver != null">m_id=(SELECT m_id FROM tbl_manager WHERE m_fullname=#{approver, jdbcType=VARCHAR}),</if>
+		</set>
+		WHERE p_id=#{id, jdbcType=INTEGER}
+	</update>
+</mapper>

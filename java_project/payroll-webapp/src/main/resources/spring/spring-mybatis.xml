@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xsi:schemaLocation=" 
+      http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/tx 
+      http://www.springframework.org/schema/tx/spring-tx.xsd
+      http://www.springframework.org/schema/aop 
+      http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<!-- enable Component annotation scanning -->
+	<context:component-scan base-package="v2.com.company.payroll">
+	  <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+  </context:component-scan>
+
+	<!-- import database configuration file -->
+  <context:property-placeholder location="classpath:db.properties"/>
+	<!-- configure c3p0 data source -->
+  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <property name="driverClass" value="${mariadb.driver}"/>
+    <property name="jdbcUrl" value="${mariadb.url}"/>
+    <property name="user" value="${mariadb.username}"/>
+    <property name="password" value="${mariadb.password}"/>
+  </bean>
+  <!-- configure sqlsessionfactory -->
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+    <!-- if there are mappers in mybatis-config, comment the below line -->
+    <property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"/>
+  </bean>
+  <!-- enable dynamic scanning data access object layer interface -->
+  <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="v2.com.company.payroll.mapper"/>
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+  </bean>
+  <!-- transaction -->
+  <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+  </bean>
+</beans>

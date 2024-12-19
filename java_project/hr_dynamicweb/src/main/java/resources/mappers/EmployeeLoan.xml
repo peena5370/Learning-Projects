@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="resources.mappers.EmployeeLoan">
+	<resultMap id="result" type="EmployeeLoan">
+	     <result property="id" column="loan_id" jdbcType="INTEGER"/>
+	     <result property="reasons" column="reasons" jdbcType="VARCHAR"/>
+	     <result property="amount" column="amount" jdbcType="DECIMAL"/>
+	     <result property="issueDate" column="issuedate" jdbcType="DATE"/>
+	     <result property="status" column="status" jdbcType="VARCHAR"/>  
+	     <result property="employeeName" column="employeename" jdbcType="VARCHAR"/>
+	     <result property="approver" column="approver" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="tb">tbl_employeeloan</sql>
+	<sql id="Base_Column_List">
+	loan_id, reasons, amount, issuedate, status, tbl_employee.e_fullname AS employeename, tbl_manager.m_fullname AS approver
+	</sql>
+	<!-- List all employee loan -->
+	<select id="getLoanList" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+		INNER JOIN tbl_employee ON tbl_employeeloan.e_id=tbl_employee.e_id
+		LEFT JOIN tbl_manager ON tbl_employeeloan.m_id=tbl_manager.m_id;
+	</select>
+	<!-- List loan table by employee -->
+	<select id="getLoanListByEmployee" resultMap="result" parameterType="String">
+		SELECT
+		loan_id, reasons, amount, issuedate, status, tbl_manager.m_fullname AS approver
+		FROM
+		<include refid="tb"/>
+		LEFT JOIN tbl_manager ON tbl_employeeloan.m_id=tbl_manager.m_id
+		WHERE e_id=(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR});
+	</select>
+	<!-- Add new loan -->
+	<insert id="insertLoan" parameterType="EmployeeLoan">
+		INSERT INTO 
+		<include refid="tb"/>
+		(reasons, amount, issuedate, status, e_id)
+		VALUES(#{reasons, jdbcType=VARCHAR}, #{amount, jdbcType=DECIMAL}, #{issueDate, jdbcType=DATE}, #{status, jdbcType=VARCHAR}, 
+		(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR}));
+	</insert>
+	<!-- update loan status and approver -->
+	<update id="updateLoanStatus" parameterType="EmployeeLoan">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="status != null">status=#{status, jdbcType=VARCHAR},</if>
+		<if test="approver != null">m_id=(SELECT m_id FROM tbl_manager WHERE m_fullname=#{approver, jdbcType=VARCHAR})</if>
+		</set>
+		WHERE loan_id=#{id, jdbcType=INTEGER};
+	</update>
+</mapper>

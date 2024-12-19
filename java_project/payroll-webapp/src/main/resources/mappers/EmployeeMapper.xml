@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="v2.com.company.payroll.mapper.EmployeeMapper">
+	<resultMap id="result" type="employee">
+    <result property="id" column="e_id" jdbcType="INTEGER"/>
+    <result property="fullname" column="e_fullname" jdbcType="VARCHAR"/>
+    <result property="gender" column="e_gender" jdbcType="VARCHAR"/>
+    <result property="age" column="e_age" jdbcType="INTEGER"/>  
+    <result property="martialStatus" column="e_martialstatus" jdbcType="VARCHAR"/>
+    <result property="education" column="e_educationlevel" jdbcType="VARCHAR"/> 
+    <result property="address" column="e_address" jdbcType="VARCHAR"/>
+    <result property="state" column="e_state" jdbcType="VARCHAR"/>
+    <result property="country" column="e_country" jdbcType="VARCHAR"/>
+    <result property="phone" column="e_phone" jdbcType="VARCHAR"/>  
+    <result property="email" column="e_email" jdbcType="VARCHAR"/>
+    <result property="dateHired" column="e_datehired" jdbcType="DATE"/>  
+    <result property="dateQuit" column="e_datequit" jdbcType="DATE"/>
+    <result property="department" column="departmentname" jdbcType="VARCHAR"/>
+    <result property="hirer" column="hirer" jdbcType="VARCHAR"/>  
+    <result property="title" column="title" jdbcType="VARCHAR"/>  
+    <result property="account_id" column="account_id" jdbcType="INTEGER"/>
+    <result property="username" column="username" jdbcType="VARCHAR"/>
+    <result property="dateCreated" column="datecreated" jdbcType="TIMESTAMP"/>
+    <result property="dateChanged" column="datechanged" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	<sql id="tb">tbl_employee</sql>
+	<sql id="Base_Column_List">
+	e_id, e_fullname, e_gender,e_age, e_martialstatus, e_educationlevel, e_address, e_state, e_country, e_phone, e_email, e_datehired, e_datequit, 
+	tbl_department.d_departmentname AS departmentname, tbl_title.t_titlename AS title, tbl_manager.m_fullname AS hirer
+	</sql>
+	<!-- List all employee -->
+	<select id="getEmployeeList" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>, tbl_department, tbl_title, tbl_manager
+		WHERE tbl_employee.d_id=tbl_department.d_id AND tbl_employee.t_id=tbl_title.t_id AND tbl_employee.m_id=tbl_manager.m_id
+		GROUP BY e_id;
+	</select>
+	<!-- Get employee info by a_id -->
+	<select id="getEmployeeById" resultMap="result" parameterType="java.lang.Integer">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+		INNER JOIN tbl_account ON tbl_employee.a_id=tbl_account.a_id
+		INNER JOIN tbl_department ON tbl_employee.d_id=tbl_department.d_id
+		INNER JOIN tbl_title ON tbl_employee.t_id=tbl_title.t_id
+		INNER JOIN tbl_manager ON tbl_employee.m_id=tbl_manager.m_id
+		WHERE tbl_account.a_id=#{a_id, jdbcType=INTEGER};
+	</select>
+	<!-- Get employee info by employee id -->
+	<select id="getEmployeeInfo" resultMap="result" parameterType="java.lang.Integer">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+		INNER JOIN tbl_account ON tbl_employee.a_id=tbl_account.a_id
+		INNER JOIN tbl_department ON tbl_employee.d_id=tbl_department.d_id
+		INNER JOIN tbl_title ON tbl_employee.t_id=tbl_title.t_id
+		INNER JOIN tbl_manager ON tbl_employee.m_id=tbl_manager.m_id
+		WHERE e_id=#{id, jdbcType=INTEGER};
+	</select>
+	<!-- Get employee account info -->
+	<select id="getEmployeeByAccount" resultMap="result">
+		SELECT
+		tbl_account.a_id AS account_id, tbl_account.a_username AS username, e_id, e_fullname, tbl_account.a_created AS datecreated, tbl_account.a_changed AS datechanged
+		FROM
+		<include refid="tb"/>, tbl_account
+		WHERE tbl_employee.a_id=tbl_account.a_id;
+	</select>
+	<!-- Add new employee -->
+	<insert id="addEmployee" parameterType="employee">
+		INSERT INTO 
+		<include refid="tb"/>
+		(e_fullname, e_gender, e_age, e_martialstatus, e_educationlevel, e_address, e_state, e_country, e_phone, e_email, e_datehired, e_datequit, a_id, d_id, t_id, m_id)
+		VALUES(#{fullname, jdbcType=VARCHAR}, #{gender, jdbcType=VARCHAR}, #{age, jdbcType=INTEGER}, #{martialStatus, jdbcType=VARCHAR}, #{education, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}, 
+		#{state, jdbcType=VARCHAR}, #{country, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, #{dateHired, jdbcType=DATE}, #{dateQuit, jdbcType=DATE}, 
+		(SELECT a_id FROM tbl_account WHERE a_username=#{username, jdbcType=VARCHAR}), 
+		(SELECT d_id FROM tbl_department WHERE d_departmentname=#{department, jdbcType=VARCHAR}), 
+		(SELECT t_id FROM tbl_title WHERE t_titlename=#{title, jdbcType=VARCHAR}), (SELECT m_id FROM tbl_manager WHERE m_fullname=#{hirer, jdbcType=VARCHAR}));
+	</insert>
+	<!-- Update  employee info by id -->
+	<update id="updateEmployee" parameterType="employee">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="fullname != null">e_fullname=#{fullname, jdbcType=CHAR},</if>
+		<if test="gender != null">e_gender=#{gender, jdbcType=VARCHAR},</if>
+		<if test="age != null">e_age=#{age, jdbcType=INTEGER},</if>
+		<if test="martialStatus != null">e_martialstatus=#{martialStatus, jdbcType=VARCHAR},</if>
+		<if test="education != null">e_educationlevel=#{education, jdbcType=VARCHAR},</if>
+		<if test="address != null">e_address=#{address, jdbcType=VARCHAR},</if>
+		<if test="state != null">e_state=#{state, jdbcType=VARCHAR},</if>
+		<if test="country != null">e_country=#{country, jdbcType=VARCHAR},</if>
+		<if test="phone != null">e_phone=#{phone, jdbcType=VARCHAR},</if>
+		<if test="email != null">e_email=#{email, jdbcType=VARCHAR},</if>
+		</set>
+		WHERE e_id=#{id, jdbcType=INTEGER}
+	</update>
+	<!-- Update employee quit date -->
+	<update id="updateEmployeeQuitDate" parameterType="employee">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="dateQuit != null">e_datequit=#{dateQuit, jdbcType=DATE},</if>
+		</set>
+		WHERE e_fullname=#{fullname, jdbcType=VARCHAR}
+	</update>
+	<!-- Update employee title -->
+	<update id="updateEmployeeTitle" parameterType="employee">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="title != null">t_id=(SELECT t_id FROM tbl_title WHERE t_titlename=#{title, jdbcType=VARCHAR})</if>
+		</set>
+		WHERE e_fullname=#{fullname, jdbcType=VARCHAR}
+	</update>
+	<!-- Delete employee -->
+	<delete id="deleteEmployee" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="tb"/>
+		WHERE e_id=#{id, jdbcType=INTEGER}
+	</delete>
+</mapper>

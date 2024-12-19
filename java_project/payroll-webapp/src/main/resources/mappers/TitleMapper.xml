@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="v2.com.company.payroll.mapper.TitleMapper">
+	<resultMap id="result" type="title">
+		<result property="id" column="t_id" jdbcType="INTEGER"/>
+	  <result property="titleName" column="t_titlename" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="tb">tbl_title</sql>
+	<sql id="Base_Column_List">t_id, t_titlename</sql>
+	<!-- List all title -->
+	<select id="getTitleList" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+	</select>
+	<!-- Get title name by id -->
+	<select id="getTitleById" resultType="String" parameterType="java.lang.Integer">
+		SELECT
+		t_titlename
+		FROM
+		<include refid="tb"/>
+		WHERE t_id=#{id, jdbcType=INTEGER}
+	</select>
+	<!-- Add new title -->
+	<insert id="addTitle" parameterType="String">
+		INSERT INTO
+		<include refid="tb"/>
+		(t_titlename)
+		VALUES(#{titleName, jdbcType=VARCHAR})
+	</insert>
+	<!-- Edit title based on id -->
+	<update id="updateTitle" parameterType="title">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="titleName != null">t_titlename=#{titleName, jdbcType=VARCHAR},</if>
+		</set>
+		WHERE t_id=#{id, jdbcType=INTEGER}
+	</update>
+	<!-- Delete title -->
+	<delete id="deleteTitle" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="tb"/>
+		WHERE t_id=#{id, jdbcType=INTEGER}
+	</delete>
+</mapper>

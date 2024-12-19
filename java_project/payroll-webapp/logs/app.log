@@ -1,0 +1,6 @@
+2022-04-27 18:33:13,954 DEBUG o.a.i.l.j.BaseJdbcLogger [main] ==>  Preparing: SELECT a_id, a_username,a_password, a_key, a_created, a_changed FROM tbl_account
+2022-04-27 18:33:14,200 DEBUG o.a.i.l.j.BaseJdbcLogger [main] ==> Parameters: 
+2022-04-27 18:33:14,309 DEBUG o.a.i.l.j.BaseJdbcLogger [main] <==      Total: 31
+2022-04-27 19:32:52,401 DEBUG o.a.i.l.j.BaseJdbcLogger [main] ==>  Preparing: SELECT a_id, a_username,a_password, a_key, a_created, a_changed FROM tbl_account
+2022-04-27 19:32:52,497 DEBUG o.a.i.l.j.BaseJdbcLogger [main] ==> Parameters: 
+2022-04-27 19:32:52,552 DEBUG o.a.i.l.j.BaseJdbcLogger [main] <==      Total: 32

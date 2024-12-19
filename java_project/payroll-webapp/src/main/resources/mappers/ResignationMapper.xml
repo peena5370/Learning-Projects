@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="v2.com.company.payroll.mapper.ResignationMapper">
+	<resultMap id="result" type="resignation">
+    <result property="id" column="r_id" jdbcType="INTEGER"/>
+    <result property="reasons" column="reasons" jdbcType="VARCHAR"/>
+    <result property="date" column="r_date" jdbcType="DATE"/>
+    <result property="employeeName" column="employeename" jdbcType="VARCHAR"/>
+    <result property="approver" column="approver" jdbcType="VARCHAR"/>  
+	</resultMap>
+	<sql id="tb">tbl_resignation</sql>
+	<sql id="Base_Column_List">
+	r_id, reasons, r_date, tbl_employee.e_fullname AS employeename, tbl_manager.m_fullname AS approver
+	</sql>
+	<!-- Get resignation list -->
+	<select id="getResignationList" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>, tbl_employee, tbl_manager
+		WHERE tbl_resignation.e_id=tbl_employee.e_id AND tbl_resignation.m_id=tbl_manager.m_id;
+	</select>
+	<!-- Insert resignation details -->
+	<insert id="insertResignation" parameterType="resignation">
+		INSERT INTO 
+		<include refid="tb"/>
+		(reasons, r_date, e_id, m_id)
+		VALUES(#{reasons, jdbcType=VARCHAR}, #{date, jdbcType=DATE}, 
+		(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR}), 
+		(SELECT m_id FROM tbl_manager WHERE m_fullname=#{approver, jdbcType=VARCHAR}));
+	</insert>
+</mapper>
