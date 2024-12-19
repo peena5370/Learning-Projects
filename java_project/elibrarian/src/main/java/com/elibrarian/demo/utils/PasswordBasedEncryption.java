@@ -94,9 +94,8 @@ public class PasswordBasedEncryption {
 	 * @return	boolean
 	 * */
 	public static boolean passwordValidate(String password) {
-		// Plain text password for admin@library.com => Admin@1234
-	    String hashed_password = "rlLrHikBaqORUG1AaTNVzne5qeE8CVbBVkiaaGGW+z4=";
-	    String hashSaltValue = "VLYnx7xTBVTl";
+	    String hashed_password = "";
+	    String hashSaltValue = "";
 	    Boolean status = verifyUserPassword(password, hashed_password, hashSaltValue);  
 	    if(status==true) {
 	      return true;
@@ -116,7 +115,6 @@ public class PasswordBasedEncryption {
 	 * @return	boolean
 	 * */
 	public static boolean userAuthentication(String password, String hashed_password, String hashSaltValue) {
-		// Plain text password for libnamesix libsix@mail.com => Admin@7890
 	    Boolean status = verifyUserPassword(password, hashed_password, hashSaltValue);  
 	    if(status==true) {
 	      return true;

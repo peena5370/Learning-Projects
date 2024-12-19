@@ -13,7 +13,7 @@ import javax.crypto.spec.PBEKeySpec;
 public class PasswordEncryption {
 
     public void simplePasswordEncryption() {
-        String password = "password@1234";
+        String password = "";
          String saltvalue = PassBasedEnc.getSaltvalue(30);
 
          String encryptedpassword = PassBasedEnc.generateSecurePassword(password, saltvalue);
@@ -23,8 +23,8 @@ public class PasswordEncryption {
          System.out.println("Salt value = " + saltvalue);
 
          // verify the original password and encrypted password
-         String hash_ps = "diqJFbdL7Mvtr2fhAQA2QCcEGBZLJr8oxEoACfPKqv4=";
-         String salt = "RvSn1lzkaqzuTHpoCc5wdyQpYjhpz4";   
+         String hash_ps = "";
+         String salt = "";   
          Boolean status = PassBasedEnc.verifyUserPassword(password,hash_ps,salt);
  
          if(status) {
@@ -35,7 +35,7 @@ public class PasswordEncryption {
     }
     
     public void hashPasswordWithMessageDigest() {
-    	String password = "password@1234";
+    	String password = "";
         String encryptedpassword = null;
         try {
             // MessageDigest instance for MD5.

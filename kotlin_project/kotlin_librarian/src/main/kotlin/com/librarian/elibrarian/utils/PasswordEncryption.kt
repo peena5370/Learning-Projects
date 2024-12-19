@@ -58,13 +58,9 @@ class PasswordEncryption {
         return finalVal
     }
 
-    /**
-     * for testing purpose
-     */
     fun passwordValidate(password: String): Boolean {
-        // Plain text password for admin@library.com => Admin@1234
-        val hashedPassword: String = "rlLrHikBaqORUG1AaTNVzne5qeE8CVbBVkiaaGGW+z4="
-        val hashedSecretKey: String = "VLYnx7xTBVTl"
+        val hashedPassword: String = ""
+        val hashedSecretKey: String = ""
 
         return verifyUserPassword(password, hashedPassword, hashedSecretKey)
     }
