@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="resources.mappers.EmployeeLeave">
+	<resultMap id="result" type="EmployeeLeave">
+	     <result property="id" column="l_id" jdbcType="INTEGER"/>
+	     <result property="reasons" column="l_reasons" jdbcType="VARCHAR"/>
+	     <result property="dateFrom" column="l_datefrom" jdbcType="TIMESTAMP"/>
+	     <result property="dateTo" column="l_dateto" jdbcType="TIMESTAMP"/>  
+	     <result property="type" column="l_type" jdbcType="VARCHAR"/>
+	     <result property="status" column="l_status" jdbcType="VARCHAR"/> 
+	     <result property="employeeName" column="employeename" jdbcType="VARCHAR"/>
+	     <result property="approver" column="approver" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="tb">tbl_employeeleave</sql>
+	<sql id="Base_Column_List">
+	l_id, l_reasons, l_datefrom, l_dateto, l_type, l_status, tbl_employee.e_fullname AS employeename, tbl_manager.m_fullname AS approver 
+	</sql>
+	<!-- List all employee leave -->
+	<select id="getLeaveList" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+		INNER JOIN tbl_employee ON tbl_employeeleave.e_id=tbl_employee.e_id
+		LEFT JOIN tbl_manager ON tbl_employeeleave.m_id=tbl_manager.m_id;
+	</select>
+	<!-- View leave list by employee -->
+	<select id="getLeaveListByEmployee" resultMap="result" parameterType="String">
+		SELECT
+		l_id, l_reasons, l_datefrom, l_dateto, l_type, l_status, tbl_manager.m_fullname AS approver
+		FROM
+		<include refid="tb"/>
+		LEFT JOIN tbl_manager ON tbl_employeeleave.m_id=tbl_manager.m_id
+		WHERE e_id=(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR});
+	</select>
+	<!-- Add new employee leave -->
+	<insert id="insertLeave" parameterType="EmployeeLeave">
+		INSERT INTO 
+		<include refid="tb"/>
+		(l_reasons, l_datefrom, l_dateto, l_type, l_status, e_id)
+		VALUES(#{reasons, jdbcType=VARCHAR}, #{dateFrom, jdbcType=VARCHAR}, #{dateTo, jdbcType=VARCHAR}, #{type, jdbcType=VARCHAR}, #{status, jdbcType=VARCHAR}, 
+		(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR}));
+	</insert>
+	<!-- update leave status and approver -->
+	<update id="updateStatus" parameterType="EmployeeLeave">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="status != null">l_status=#{status, jdbcType=VARCHAR},</if>
+		<if test="approver != null">m_id=(SELECT m_id FROM tbl_manager WHERE m_fullname=#{approver, jdbcType=VARCHAR})</if>
+		</set>
+		WHERE l_id=#{id, jdbcType=INTEGER};
+	</update>
+</mapper>

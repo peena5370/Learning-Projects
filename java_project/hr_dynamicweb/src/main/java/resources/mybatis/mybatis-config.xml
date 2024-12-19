@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <properties resource="resources/db.properties"/>
+   <typeAliases>
+      <typeAlias alias="Account" type="v2.com.company.payroll.model.AccountModel"/>
+      <typeAlias alias="Department" type="v2.com.company.payroll.model.DepartmentModel"/>
+      <typeAlias alias="Employee" type="v2.com.company.payroll.model.EmployeeModel"/>
+      <typeAlias alias="EmployeeLeave" type="v2.com.company.payroll.model.EmployeeLeaveModel"/>
+      <typeAlias alias="EmployeeLoan" type="v2.com.company.payroll.model.EmployeeLoanModel"/>
+      <typeAlias alias="EmployeePromotion" type="v2.com.company.payroll.model.EmployeePromotionModel"/>
+      <typeAlias alias="EmployeeSalary" type="v2.com.company.payroll.model.EmployeeSalaryModel"/>
+      <typeAlias alias="Manager" type="v2.com.company.payroll.model.ManagerModel"/>
+      <typeAlias alias="Payroll" type="v2.com.company.payroll.model.PayRollModel"/>
+      <typeAlias alias="Resignation" type="v2.com.company.payroll.model.ResignationModel"/>
+      <typeAlias alias="Title" type="v2.com.company.payroll.model.TitleModel"/>
+      <typeAlias alias="Training" type="v2.com.company.payroll.model.TrainingModel"/>
+   </typeAliases>
+   <environments default="development">
+      <environment id="development">
+         <transactionManager type="JDBC"/> 
+			
+         <dataSource type="POOLED">
+            <property name="driver" value="${mariadb.driver}"/>
+            <property name="url" value="${mariadb.url}"/>
+            <property name="username" value="${mariadb.username}"/>
+            <property name="password" value="${mariadb.password}"/>
+         </dataSource>   
+         
+      </environment>
+   </environments>
+   
+
+	
+   <mappers>
+      <mapper resource="resources/mappers/Account.xml"/>
+      <mapper resource="resources/mappers/Department.xml"/>
+      <mapper resource="resources/mappers/Employee.xml"/>
+      <mapper resource="resources/mappers/EmployeeLeave.xml"/>
+      <mapper resource="resources/mappers/EmployeeLoan.xml"/>
+      <mapper resource="resources/mappers/EmployeePromotion.xml"/>
+      <mapper resource="resources/mappers/EmployeeSalary.xml"/>
+      <mapper resource="resources/mappers/Manager.xml"/>
+      <mapper resource="resources/mappers/Payroll.xml"/>
+      <mapper resource="resources/mappers/Resignation.xml"/>
+      <mapper resource="resources/mappers/Title.xml"/>
+      <mapper resource="resources/mappers/Training.xml"/>
+   </mappers>
+
+</configuration>

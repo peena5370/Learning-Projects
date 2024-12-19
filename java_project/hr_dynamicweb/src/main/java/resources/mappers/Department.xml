@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="resources.mappers.Department">
+	<resultMap id="result" type="Department">
+		<result property="id" column="d_id" jdbcType="INTEGER"/>
+		<result property="departmentName" column="d_departmentname" jdbcType="VARCHAR"/>
+		<result property="location" column="d_location" jdbcType="VARCHAR"/>
+		<result property="state" column="d_state" jdbcType="VARCHAR"/>
+		<result property="country" column="d_country" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="tb">tbl_department</sql>
+	<sql id="Base_Column_List">d_id, d_departmentname, d_location, d_state, d_country</sql>
+	<!-- List all department -->
+	<select id="getAllDepartment" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+	</select>
+	<!-- Get department name and id -->
+	<select id="getIdAndName" resultMap="result">
+		SELECT
+		d_id, d_departmentname
+		FROM
+		<include refid="tb"/>
+	</select>
+	<!-- Get department name by id -->
+	<select id="getDepartmentById" resultMap="result">
+		SELECT
+		d_departmentname
+		FROM
+		<include refid="tb"/>
+		WHERE d_id=#{id, jdbcType=INTEGER}
+	</select>
+	<!-- Add new department -->
+	<insert id="addDepartment" parameterType="Department">
+		INSERT INTO
+		<include refid="tb"/>
+		(d_departmentname, d_location, d_state, d_country)
+		VALUES(#{departmentName, jdbcType=VARCHAR}, #{location, jdbcType=VARCHAR}, #{state, jdbcType=VARCHAR}, #{country, jdbcType=VARCHAR})
+	</insert>
+	<!-- Update department info -->
+	<update id="updateDepartment" parameterType="Department">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="departmentName != null">d_departmentname=#{departmentName, jdbcType=VARCHAR},</if>
+		<if test="location != null">d_location=#{location, jdbcType=VARCHAR},</if>
+		<if test="state != null">d_state=#{state, jdbcType=VARCHAR},</if>
+		<if test="country != null">d_country=#{country, jdbcType=VARCHAR},</if>
+		</set>
+		WHERE d_id=#{id, jdbcType=INTEGER}
+	</update>
+	<!-- Delete department -->
+	<delete id="deleteDepartment" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="tb"/>
+		WHERE d_id=#{id, jdbcType=INTEGER}
+	</delete>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="resources.mappers.Training">
+	<resultMap id="result" type="Training">
+	     <result property="id" column="training_id" jdbcType="INTEGER"/>
+	     <result property="info" column="info" jdbcType="VARCHAR"/>
+	     <result property="startDate" column="startdate" jdbcType="TIMESTAMP"/>
+	     <result property="endDate" column="enddate" jdbcType="TIMESTAMP"/>
+	     <result property="status" column="status" jdbcType="VARCHAR"/>
+	     <result property="employeeName" column="employeename" jdbcType="VARCHAR"/>
+	     <result property="issuer" column="issuer" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="tb">tbl_training</sql>
+	<sql id="Base_Column_List">
+	training_id, info, startdate, enddate, status, tbl_employee.e_fullname AS employeename, tbl_manager.m_fullname AS issuer
+	</sql>
+	<!-- Get list by manager -->
+	<select id="getTrainingListByManager" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>, tbl_employee, tbl_manager
+		WHERE tbl_training.e_id=tbl_employee.e_id AND tbl_training.m_id=tbl_manager.m_id;
+	</select>
+	<!-- Get list by employee -->
+	<select id="getTrainingListByEmployee" resultMap="result" parameterType="String">
+		SELECT 
+		training_id, info, startdate, enddate, status, tbl_manager.m_fullname AS issuer 
+		FROM
+		<include refid="tb"/>, tbl_manager
+		WHERE tbl_training.m_id=tbl_manager.m_id AND e_id=(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR});
+	</select>
+	<!-- Add new training -->
+	<insert id="insertTraining" parameterType="Training">
+		INSERT INTO 
+		<include refid="tb"/>
+		(info, startdate, enddate, status, e_id, m_id)
+		VALUES(#{info, jdbcType=VARCHAR}, #{startDate, jdbcType=TIMESTAMP}, #{endDate, jdbcType=TIMESTAMP}, #{status, jdbcType=VARCHAR}, 
+		(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR}), 
+ 		(SELECT m_id FROM tbl_manager WHERE m_fullname=#{issuer, jdbcType=VARCHAR}));
+	</insert>
+	<!-- Update training status by employee -->
+	<update id="updateStatusByEmployee" parameterType="Training">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="status != null">status=#{status, jdbcType=VARCHAR},</if>
+		</set>
+		WHERE training_id=#{id, jdbcType=INTEGER} AND e_id=(SELECT e_id FROM tbl_employee WHERE e_fullname=#{employeeName, jdbcType=VARCHAR});
+	</update>
+</mapper>

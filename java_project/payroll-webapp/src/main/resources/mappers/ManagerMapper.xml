@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="v2.com.company.payroll.mapper.ManagerMapper">
+	<resultMap id="result" type="manager">
+    <result property="id" column="m_id" jdbcType="INTEGER"/>
+    <result property="fullname" column="m_fullname" jdbcType="VARCHAR"/>
+    <result property="role" column="m_role" jdbcType="VARCHAR"/>
+    <result property="gender" column="m_gender" jdbcType="VARCHAR"/>
+    <result property="age" column="m_age" jdbcType="INTEGER"/>  
+    <result property="martialStatus" column="m_martialstatus" jdbcType="VARCHAR"/>
+    <result property="education" column="m_educationlevel" jdbcType="VARCHAR"/> 
+    <result property="address" column="m_address" jdbcType="VARCHAR"/>
+    <result property="state" column="m_state" jdbcType="VARCHAR"/>
+    <result property="country" column="m_country" jdbcType="VARCHAR"/>
+    <result property="phone" column="m_phone" jdbcType="VARCHAR"/>  
+    <result property="email" column="m_email" jdbcType="VARCHAR"/>
+    <result property="dateHired" column="m_datehired" jdbcType="DATE"/>  
+    <result property="dateQuit" column="m_datequit" jdbcType="DATE"/>
+    <result property="title" column="title" jdbcType="VARCHAR"/>  
+    <result property="department" column="departmentname" jdbcType="VARCHAR"/>
+    <result property="account_id" column="account_id" jdbcType="INTEGER"/>
+    <result property="username" column="username" jdbcType="VARCHAR"/>
+    <result property="dateCreated" column="datecreated" jdbcType="TIMESTAMP"/>
+    <result property="dateChanged" column="datechanged" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	<sql id="tb">tbl_manager</sql>
+	<sql id="Base_Column_List">
+	m_id, m_fullname, m_role, m_gender, m_age, m_martialstatus, m_educationlevel, m_address, m_state, m_country, m_phone, m_email, m_datehired, m_datequit, 
+	tbl_title.t_titlename AS title, tbl_department.d_departmentname AS departmentname
+	</sql>
+	<!-- List all manager -->
+	<select id="getManagerList" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>, tbl_department, tbl_title
+		WHERE tbl_manager.d_id=tbl_department.d_id AND tbl_manager.t_id=tbl_title.t_id
+		GROUP BY m_id;
+	</select>
+	<!-- Get manager info by account id -->
+	<select id="getManagerById" resultMap="result" parameterType="java.lang.Integer">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+		INNER JOIN tbl_account ON tbl_manager.a_id=tbl_account.a_id
+		INNER JOIN tbl_department ON tbl_manager.d_id=tbl_department.d_id
+		INNER JOIN tbl_title ON tbl_manager.t_id=tbl_title.t_id
+		WHERE tbl_account.a_id=#{account_id, jdbcType=INTEGER};
+	</select>
+	<!-- Get manager info by manager id -->
+	<select id="getManagerInfo" resultMap="result" parameterType="java.lang.Integer">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+		INNER JOIN tbl_account ON tbl_manager.a_id=tbl_account.a_id
+		INNER JOIN tbl_department ON tbl_manager.d_id=tbl_department.d_id
+		INNER JOIN tbl_title ON tbl_manager.t_id=tbl_title.t_id
+		WHERE m_id=#{id, jdbcType=INTEGER};
+	</select>
+	<!-- Get manager account info -->
+	<select id="getManagerAccountInfo" resultMap="result">
+		SELECT
+		tbl_account.a_id AS account_id, tbl_account.a_username AS username, m_id, m_fullname, tbl_account.a_created AS datecreated, tbl_account.a_changed AS datechanged
+		FROM
+		<include refid="tb"/>, tbl_account
+		WHERE tbl_manager.a_id=tbl_account.a_id;
+	</select>
+	<!-- Add new manager -->
+	<insert id="addManager" parameterType="manager">
+		INSERT INTO 
+		<include refid="tb"/>
+		(m_fullname, m_role, m_gender, m_age, m_martialstatus, m_educationlevel, m_address, m_state, m_country, m_phone, m_email, m_datehired, m_datequit, a_id, d_id, t_id)
+		VALUES(#{fullname, jdbcType=VARCHAR}, #{role, jdbcType=VARCHAR}, #{gender, jdbcType=VARCHAR}, #{age, jdbcType=INTEGER}, #{martialStatus, jdbcType=VARCHAR}, #{education, jdbcType=VARCHAR}, 
+		#{address, jdbcType=VARCHAR}, #{state, jdbcType=VARCHAR}, #{country, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, #{dateHired, jdbcType=DATE}, #{dateQuit, jdbcType=DATE}, 
+		(SELECT a_id FROM tbl_account WHERE a_username=#{username, jdbcType=VARCHAR}), 
+		(SELECT d_id FROM tbl_department WHERE d_departmentname=#{department, jdbcType=VARCHAR}), 
+		(SELECT t_id FROM tbl_title WHERE t_titlename=#{title, jdbcType=VARCHAR}));
+	</insert>
+	<!-- Update manager info by id -->
+	<update id="updateManager" parameterType="manager">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="fullname != null">m_fullname=#{fullname, jdbcType=CHAR},</if>
+		<if test="gender != null">m_gender=#{gender, jdbcType=VARCHAR},</if>
+		<if test="age != null">m_age=#{age, jdbcType=INTEGER},</if>
+		<if test="martialStatus != null">m_martialstatus=#{martialStatus, jdbcType=VARCHAR},</if>
+		<if test="education != null">m_educationlevel=#{education, jdbcType=VARCHAR},</if>
+		<if test="address != null">m_address=#{address, jdbcType=VARCHAR},</if>
+		<if test="state != null">m_state=#{state, jdbcType=VARCHAR},</if>
+		<if test="country != null">m_country=#{country, jdbcType=VARCHAR},</if>
+		<if test="phone != null">m_phone=#{phone, jdbcType=VARCHAR},</if>
+		<if test="email != null">m_email=#{email, jdbcType=VARCHAR},</if>
+		</set>
+		WHERE m_id=#{id, jdbcType=INTEGER}
+	</update>
+	<!-- Update manager quit date -->
+	<update id="updateManagerQuitDate" parameterType="manager">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="dateQuit != null">m_datequit=#{dateQuit, jdbcType=DATE},</if>
+		</set>
+		WHERE m_fullname=#{fullname, jdbcType=VARCHAR}
+	</update>
+	<!-- Update manager title -->
+	<update id="updateManagerTitle" parameterType="manager">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="title != null">t_id=(SELECT t_id FROM tbl_title WHERE t_titlename=#{title, jdbcType=VARCHAR})</if>
+		</set>
+		WHERE m_fullname=#{fullname, jdbcType=VARCHAR}
+	</update>
+	<!-- Delete manager -->
+	<delete id="deleteManager" parameterType="java.lang.Integer">
+		DELETE FROM
+		<include refid="tb"/>
+		WHERE m_id=#{id, jdbcType=INTEGER}
+	</delete>
+</mapper>

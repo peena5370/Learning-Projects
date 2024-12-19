@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace is file package name -->
+<mapper namespace="resources.mappers.Account">
+
+	<resultMap id="result" type="Account">
+	     <result property="id" column="a_id" jdbcType="INTEGER"/>
+	     <result property="username" column="a_username" jdbcType="CHAR"/>
+	     <result property="password" column="a_password" jdbcType="CHAR"/>
+	     <result property="key" column="a_key" jdbcType="CHAR"/>  
+	     <result property="dateCreated" column="a_created" jdbcType="TIMESTAMP"/>
+	     <result property="dateChanged" column="a_changed" jdbcType="TIMESTAMP"/>  
+	</resultMap>
+	<sql id="tb">tbl_account</sql>
+	<sql id="Base_Column_List">a_id, a_username,a_password, a_key, a_created, a_changed</sql>
+	<!-- List all tbl_account -->
+	<select id="getAll" resultMap="result">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		<include refid="tb"/>
+	</select>
+	<!-- Get id, password, key based on username -->
+	<select id="getPasswordKey" resultMap="result" parameterType="String">
+		SELECT
+		a_id, a_password, a_key 
+		FROM 
+		<include refid="tb"/>
+		WHERE a_username=#{username, jdbcType=CHAR};
+	</select>
+	<!-- Add new user account -->
+	<insert id="addAccount" parameterType="Account">
+		INSERT INTO 
+		<include refid="tb"/>
+		(a_username, a_password, a_key, a_created, a_changed)
+		VALUES(#{username, jdbcType=CHAR}, #{password, jdbcType=CHAR}, #{key, jdbcType=CHAR}, #{dateCreated, jdbcType=TIMESTAMP}, null)
+	</insert>
+	<!-- Change user account password, key and update a_changed -->
+	<update id="changePassword" parameterType="Account">
+		UPDATE
+		<include refid="tb"/>
+		<set>
+		<if test="password != null">a_password=#{password, jdbcType=CHAR},</if>
+		<if test="key != null">a_key=#{key, jdbcType=CHAR},</if>
+		<if test="dateChanged != null">a_changed=#{dateChanged, jdbcType=TIMESTAMP},</if>
+		</set>
+		WHERE a_username=#{username, jdbcType=CHAR}
+	</update>
+	<!-- Delete user account -->
+	<delete id="deleteAccount" parameterType="String">
+		DELETE FROM
+		<include refid="tb"/>
+		WHERE a_username=#{username, jdbcType=CHAR}
+	</delete>
+</mapper>
