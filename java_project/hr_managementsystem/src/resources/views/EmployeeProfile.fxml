@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.payroll.controller.EmployeeProfileController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" spacing="200.0">
+         <children>
+            <VBox spacing="10.0">
+               <children>
+                  <Label text="Employee ID:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="id_tag">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Full Name:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="name_tag">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Email:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="email_tag">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Start Servicing Date:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="date_tag">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox spacing="10.0">
+               <children>
+                  <Label text="Department:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dept_tag">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Position:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="post_tag">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Phone Number:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="phone_tag">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#editInfo" prefHeight="35.0" prefWidth="150.0" text="Edit Information" />
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#changePassword" prefHeight="35.0" prefWidth="150.0" text="Change Password" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

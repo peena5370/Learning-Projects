@@ -1,2 +1,4 @@
 python_project/*/__pycache__/*
 java_project/*/target/
+java_project/*/.idea/
+java_project/*/*.iml

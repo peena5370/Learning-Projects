@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.payroll.controller.IssueSalaryController">
+   <children>
+      <Label prefHeight="50.0" text="Issue Employee Salary">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Employee Name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="employee_name" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Base Salary">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="base_pay" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" GridPane.rowIndex="1" />
+            <TextField fx:id="ot_pay" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Overtime Pay" GridPane.columnIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Deduction">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label text="Date Issue" GridPane.columnIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="deduction" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" GridPane.rowIndex="1" />
+            <DatePicker fx:id="date_issue" promptText="Click for date" showWeekNumbers="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="100.0" spacing="20.0">
+         <children>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#submit" prefHeight="35.0" prefWidth="100.0" text="Submit">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#cancel" prefHeight="35.0" prefWidth="100.0" text="Cancel" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+   </children>
+   <padding>
+      <Insets left="20.0" />
+   </padding>
+</VBox>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.payroll.controller.EmployeeIssueLoanController">
+   <children>
+      <Label text="Loan Appplication Form">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <Label text="Reasons:">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="reason" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+      <Label text="Amount:">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="amount" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+      <Label text="Date:">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <DatePicker fx:id="date" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="-Please Select-" />
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#submit" prefHeight="35.0" prefWidth="150.0" text="Submit" />
+            <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#clear" prefHeight="35.0" prefWidth="150.0" text="Clear" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets left="10.0" />
+   </padding>
+</VBox>
