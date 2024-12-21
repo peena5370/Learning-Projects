@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.payroll.controller.AdminController">
+   <top>
+      <Label fx:id="user_tag" alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" text="Label" BorderPane.alignment="CENTER_RIGHT">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </Label>
+   </top>
+   <left>
+      <TreeView id="tree_id" fx:id="admin_list" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="10.0" />
+         </padding></TreeView>
+   </left>
+   <center>
+      <StackPane fx:id="output_pane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </StackPane>
+   </center>
+</BorderPane>

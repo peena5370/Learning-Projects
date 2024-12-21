@@ -11,55 +11,55 @@
   
   <servlet>
     <servlet-name>UserLogin</servlet-name>
-    <servlet-class>com.learning.servlet.UserLogin</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.UserLogin</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>Login</servlet-name>
-  	<servlet-class>com.learning.servlet.Login</servlet-class>
+  	<servlet-class>com.librarian.elibrarian.servlet.Login</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>Logout</servlet-name>
-  	<servlet-class>com.learning.servlet.Logout</servlet-class>
+  	<servlet-class>com.librarian.elibrarian.servlet.Logout</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AddLibrarian</servlet-name>
-    <servlet-class>com.learning.servlet.AddLibrarian</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.AddLibrarian</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ViewLibrarian</servlet-name>
-    <servlet-class>com.learning.servlet.ViewLibrarian</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.ViewLibrarian</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>EditLibrarian</servlet-name>
-    <servlet-class>com.learning.servlet.EditLibrarian</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.EditLibrarian</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>DeleteLibrarian</servlet-name>
-    <servlet-class>com.learning.servlet.DeleteLibrarian</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.DeleteLibrarian</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AddBook</servlet-name>
-    <servlet-class>com.learning.servlet.AddBook</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.AddBook</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ViewBook</servlet-name>
-    <servlet-class>com.learning.servlet.ViewBook</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.ViewBook</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>DeleteBook</servlet-name>
-    <servlet-class>com.learning.servlet.DeleteBook</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.DeleteBook</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>IssueBook</servlet-name>
-    <servlet-class>com.learning.servlet.IssueBook</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.IssueBook</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ViewIssuedBook</servlet-name>
-    <servlet-class>com.learning.servlet.ViewIssuedBook</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.ViewIssuedBook</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ReturnBook</servlet-name>
-    <servlet-class>com.learning.servlet.ReturnBook</servlet-class>
+    <servlet-class>com.librarian.elibrarian.servlet.ReturnBook</servlet-class>
   </servlet>
   
   <servlet-mapping>

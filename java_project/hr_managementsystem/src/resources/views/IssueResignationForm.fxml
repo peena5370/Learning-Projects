@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.payroll.controller.IssueResignationController">
+   <children>
+      <Label text="Employee Resignation Form">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Employee Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="employee_name" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" GridPane.rowIndex="1" />
+            <Label text="End Of Service Date" GridPane.columnIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <DatePicker fx:id="date_table" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                  <ComboBox fx:id="time_list" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Reasons">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="reason" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="350.0" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+         <children>
+            <Button fx:id="submit" mnemonicParsing="false" onMouseClicked="#submit" prefHeight="35.0" prefWidth="120.0" text="Submit" />
+            <Button fx:id="clear" mnemonicParsing="false" onMouseClicked="#clear" prefHeight="35.0" prefWidth="120.0" text="Clear" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets left="15.0" />
+   </padding>
+</VBox>

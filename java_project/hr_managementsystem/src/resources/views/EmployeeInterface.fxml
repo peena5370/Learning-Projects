@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.payroll.controller.EmployeeController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <MenuBar GridPane.columnSpan="3">
+        <menus>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#aboutInfo" text="About" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Exit">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Quit" />
+               </items></Menu>
+        </menus>
+      </MenuBar>
+      <Label fx:id="user_label" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
+      <TabPane fx:id="tab_pane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
+        <tabs>
+          <Tab text="Profile">
+               <content>
+                  <StackPane fx:id="profile_pane" prefHeight="150.0" prefWidth="200.0" />
+               </content>
+          </Tab>
+          <Tab text="Training">
+               <content>
+                  <StackPane fx:id="training_pane" />
+               </content>
+          </Tab>
+            <Tab text="Salary">
+               <content>
+                  <StackPane fx:id="salary_pane" prefHeight="150.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+            <Tab text="Leave">
+               <content>
+                  <StackPane fx:id="leave_pane" prefHeight="150.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+            <Tab text="Others">
+               <content>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseClicked="#issueEmployeeLeave" prefHeight="35.0" prefWidth="150.0" text="Issue Leave" />
+                              <Button mnemonicParsing="false" onMouseClicked="#issueEmployeeLoan" prefHeight="35.0" prefWidth="150.0" text="Issue Loan" />
+                           </children>
+                        </VBox>
+                        <StackPane fx:id="other_pane" alignment="TOP_LEFT" />
+                     </children>
+                  </HBox>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</GridPane>
