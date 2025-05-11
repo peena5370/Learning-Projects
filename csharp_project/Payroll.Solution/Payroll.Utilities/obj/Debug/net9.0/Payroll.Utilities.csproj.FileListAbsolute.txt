@@ -1,0 +1,12 @@
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/bin/Debug/net9.0/Payroll.Utilities.deps.json
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/bin/Debug/net9.0/Payroll.Utilities.dll
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/bin/Debug/net9.0/Payroll.Utilities.pdb
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/Debug/net9.0/Payroll.Utilities.GeneratedMSBuildEditorConfig.editorconfig
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/Debug/net9.0/Payroll.Utilities.AssemblyInfoInputs.cache
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/Debug/net9.0/Payroll.Utilities.AssemblyInfo.cs
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/Debug/net9.0/Payroll.Utilities.csproj.CoreCompileInputs.cache
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/Debug/net9.0/Payroll.Utilities.sourcelink.json
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/Debug/net9.0/Payroll.Utilities.dll
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/Debug/net9.0/refint/Payroll.Utilities.dll
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/Debug/net9.0/Payroll.Utilities.pdb
+/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/Debug/net9.0/ref/Payroll.Utilities.dll

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "3oZSb5BCAaE=",
+  "success": true,
+  "projectFilePath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Modules.HR/Payroll.Modules.HR.csproj",
+  "expectedPackageFiles": [
+    "/home/user/.nuget/packages/dapper/2.1.66/dapper.2.1.66.nupkg.sha512"
+  ],
+  "logs": []
+}

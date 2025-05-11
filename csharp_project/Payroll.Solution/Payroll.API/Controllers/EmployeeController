@@ -1,0 +1,26 @@
+using Microsoft.AspNetCore.Mvc;
+
+namespace Payroll.API.Controllers;
+
+[ApiController]
+public class EmployeeController : ControllerBase
+{
+    private readonly EmployeeMapper _employeeMapper;
+
+    public EmployeeController(EmployeeMapper employeeMapper)
+    {
+        this._employeeMapper = employeeMapper;
+    }
+
+
+    [Route("api/test/employees")]
+    [HttpGet]
+    public IActionResult GetEmployee()
+    {
+        Console.WriteLine("api come in");
+        var employee = _employeeMapper.GetEmployeeAsync();
+
+        Console.WriteLine("come in here");
+        return Ok(employee);
+    }
+}
