@@ -1,6 +1,6 @@
 @Payroll.API_HostAddress = http://localhost:5266
 
-GET {{Payroll.API_HostAddress}}/weatherforecast/
+GET {{Payroll.API_HostAddress}}/api/employee
 Accept: application/json
 
 ###
