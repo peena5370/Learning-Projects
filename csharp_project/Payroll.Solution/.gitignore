@@ -3,3 +3,7 @@
 Payroll.API/appsettings.json
 Payroll.API/appsettings.Development.json
 Payroll.API/Payroll.API.csproj.user
+Payroll.API/bin/
+Payroll.Modules.HR/bin/
+Payroll.Tests/bin/
+Payroll.Utilities/bin/
