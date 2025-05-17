@@ -1,33 +1,39 @@
 {
   "format": 1,
   "restore": {
-    "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.API/Payroll.API.csproj": {}
+    "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.API\\Payroll.API.csproj": {}
   },
   "projects": {
-    "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.API/Payroll.API.csproj": {
+    "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.API\\Payroll.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.API/Payroll.API.csproj",
+        "projectUniqueName": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.API\\Payroll.API.csproj",
         "projectName": "Payroll.API",
-        "projectPath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.API/Payroll.API.csproj",
-        "packagesPath": "/home/user/.nuget/packages/",
-        "outputPath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.API/obj/",
+        "projectPath": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.API\\Payroll.API.csproj",
+        "packagesPath": "C:\\Users\\Lee Sheng Xian\\.nuget\\packages\\",
+        "outputPath": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.API\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/user/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Lee Sheng Xian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Modules.HR/Payroll.Modules.HR.csproj": {
-                "projectPath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Modules.HR/Payroll.Modules.HR.csproj"
+              "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Modules.HR\\Payroll.Modules.HR.csproj": {
+                "projectPath": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Modules.HR\\Payroll.Modules.HR.csproj"
               }
             }
           }
@@ -76,34 +82,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/user/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Modules.HR/Payroll.Modules.HR.csproj": {
+    "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Modules.HR\\Payroll.Modules.HR.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Modules.HR/Payroll.Modules.HR.csproj",
+        "projectUniqueName": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Modules.HR\\Payroll.Modules.HR.csproj",
         "projectName": "Payroll.Modules.HR",
-        "projectPath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Modules.HR/Payroll.Modules.HR.csproj",
-        "packagesPath": "/home/user/.nuget/packages/",
-        "outputPath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Modules.HR/obj/",
+        "projectPath": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Modules.HR\\Payroll.Modules.HR.csproj",
+        "packagesPath": "C:\\Users\\Lee Sheng Xian\\.nuget\\packages\\",
+        "outputPath": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Modules.HR\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/user/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Lee Sheng Xian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/Payroll.Utilities.csproj": {
-                "projectPath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/Payroll.Utilities.csproj"
+              "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Utilities\\Payroll.Utilities.csproj": {
+                "projectPath": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Utilities\\Payroll.Utilities.csproj"
               }
             }
           }
@@ -127,6 +139,18 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.1.66, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.5, )"
             }
           },
           "imports": [
@@ -145,26 +169,32 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/user/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/Payroll.Utilities.csproj": {
+    "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Utilities\\Payroll.Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/Payroll.Utilities.csproj",
+        "projectUniqueName": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Utilities\\Payroll.Utilities.csproj",
         "projectName": "Payroll.Utilities",
-        "projectPath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/Payroll.Utilities.csproj",
-        "packagesPath": "/home/user/.nuget/packages/",
-        "outputPath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/",
+        "projectPath": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Utilities\\Payroll.Utilities.csproj",
+        "packagesPath": "C:\\Users\\Lee Sheng Xian\\.nuget\\packages\\",
+        "outputPath": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Utilities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/user/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Lee Sheng Xian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -204,7 +234,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/user/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

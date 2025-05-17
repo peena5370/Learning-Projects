@@ -1,1 +1,5 @@
+.vs/
+
 Payroll.API/appsettings.json
+Payroll.API/appsettings.Development.json
+Payroll.API/Payroll.API.csproj.user

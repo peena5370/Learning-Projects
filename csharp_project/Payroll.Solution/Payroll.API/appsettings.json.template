@@ -6,7 +6,7 @@
     }
   },
   "AllowedHosts": "*",
-  "ConnectionStrings": {
-    "DefaultConnection": "Server={serverName}};database={dbName}};User Id={userId}};Password={password}}"
-  }
+    "ConnectionStrings": {
+        "DbConnectionString": "Server={serverName};Database={dbName};User Id={userId};Password={password};Trusted_Connection=True;TrustServerCertificate=True;"
+    }
 }

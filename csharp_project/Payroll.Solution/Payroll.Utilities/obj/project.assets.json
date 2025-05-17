@@ -8,24 +8,31 @@
     "net9.0": []
   },
   "packageFolders": {
-    "/home/user/.nuget/packages/": {}
+    "C:\\Users\\Lee Sheng Xian\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/Payroll.Utilities.csproj",
+      "projectUniqueName": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Utilities\\Payroll.Utilities.csproj",
       "projectName": "Payroll.Utilities",
-      "projectPath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/Payroll.Utilities.csproj",
-      "packagesPath": "/home/user/.nuget/packages/",
-      "outputPath": "/home/user/Documents/git_project/Learning-Projects/csharp_project/Payroll.Solution/Payroll.Utilities/obj/",
+      "projectPath": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Utilities\\Payroll.Utilities.csproj",
+      "packagesPath": "C:\\Users\\Lee Sheng Xian\\.nuget\\packages\\",
+      "outputPath": "C:\\archerlogic\\caroline\\proj\\Learning-Projects\\csharp_project\\Payroll.Solution\\Payroll.Utilities\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/user/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Lee Sheng Xian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -65,7 +72,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/user/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
