@@ -1,11 +1,38 @@
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
+    "Serilog": {
+        "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File", "Serilog.Sinks.Debug" ],
+        "MinimumLevel": {
+            "Default": "Debug",
+            "Override": {
+                "Microsoft": "Warning",
+                "System": "Warning"
+            }
+        },
+        "WriteTo": [
+            {
+                "Name": "Console",
+                "Args": {
+                    "outputTemplate": "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}"
+                }
+            },
+            {
+                "Name": "Debug"
+            },
+            {
+                "Name": "File",
+                "Args": {
+                    "path": "Logs/log-.txt",
+                    "rollingInterval": "Day",
+                    "outputTemplate": "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff} {Level:u3}] {Message:lj}{NewLine}{Exception}"
+                }
+            }
+        ],
+        "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ],
+        "Properties": {
+            "Application": "PayrollAPI"
+        }
+    },
+    "AllowedHosts": "*",
     "ConnectionStrings": {
         "DbConnectionString": "Server={serverName};Database={dbName};User Id={userId};Password={password};Trusted_Connection=True;TrustServerCertificate=True;"
     }

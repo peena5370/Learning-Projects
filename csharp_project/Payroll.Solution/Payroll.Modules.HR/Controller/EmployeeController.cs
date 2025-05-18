@@ -1,89 +1,103 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Payroll.Modules.HR.Context;
 using Payroll.Modules.HR.Models;
+using Payroll.Modules.HR.Services;
 using System.Diagnostics;
 
 namespace Payroll.Modules.HR.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController(EmployeeContext context) : ControllerBase
+    public class EmployeeController(IEmployeeService employeeService, ILogger<EmployeeController> log) : ControllerBase
     {
-        private readonly EmployeeContext _context = context;
+        private readonly ILogger<EmployeeController> _log = log;
+        private readonly IEmployeeService _employeeService = employeeService;
 
         [HttpGet]
-        public IActionResult GetEmployee()
+        public async Task<ActionResult<IEnumerable<Employee>>> GetAllEmployees()
         {
-            Debug.WriteLine("api come in");
-            //var employee = _employeeMapper.GetEmployeeAsync();
+            _log.LogInformation("GetAllEmployees() start");
 
-            Debug.WriteLine("come in here");
-            return Ok();
+            long currentMillis = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
+            var employees = await _employeeService.GetAllEmployeesAsync();
+
+            long endMillis = DateTimeOffset.Now.ToUnixTimeMilliseconds() - currentMillis;
+
+            _log.LogInformation("GetAllEmployees() end. Time taken: {Time}", endMillis);
+            return Ok(employees);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Employee>> GetEmployeeById(string id)
+        {
+            _log.LogInformation("GetEmployeeById() start");
+
+            long currentMillis = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
+            var employee = await _employeeService.GetEmployeesByIdAsync(id);
+
+            if (employee == null)
+            {
+                return NotFound(new { message = "Employee data not found.", id });
+            }
+            else
+            {
+                long endMillis = DateTimeOffset.Now.ToUnixTimeMilliseconds() - currentMillis;
+
+                _log.LogInformation("GetEmployeeById() end. Time taken: {Time}", endMillis);
+                return Ok(employee);
+            }
+
         }
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] EmployeeDTO employeeDto)
+        public ActionResult<string> CreateEmployee([FromBody] EmployeeDTO employeeDTO)
         {
-            Debug.WriteLine("api post come in");
-            Debug.WriteLine($"Inputed name: {employeeDto.Name} age: {employeeDto.Age}");
+            _log.LogInformation("Inputed name: {string} age: {int}", employeeDTO.Name, employeeDTO.Age);
 
-            string id = Guid.NewGuid().ToString();
+            int status = _employeeService.CreateEmployee(employeeDTO);
 
-            Debug.WriteLine($"generated new id: {id}");
-
-            var employee = new Employee
+            if (status == 0)
             {
-                Id = id,
-                Name = employeeDto.Name,
-                Age = employeeDto.Age
-            };
-
-            _context.Employees.Add(employee);
-
-            int status = _context.SaveChanges();
-
-            Debug.WriteLine($"status returned: {status}");
-
-            foreach (var dbEmployee in context.Employees)
-            {
-                Debug.WriteLine($"employee result{{ id: {dbEmployee.Id}, name: {dbEmployee.Name}, age: {dbEmployee.Age} }}");
+                return BadRequest(new { message = "Employee data created fail" });
             }
-
-            Debug.WriteLine("$post end");
+            else
+            {
+                return Ok(new { message = "Create success" });
+            }
         }
 
-        // c# request mapping template, refers here
-        //// GET: api/<ValuesController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateEmployee(string id, [FromBody] EmployeeDTO employeeDTO)
+        {
+            var status = await _employeeService.UpdateEmployeeAsync(id, employeeDTO);
 
-        //// GET api/<ValuesController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+            if (status == 0)
+            {
+                return NotFound(new { message = "Employee not found" });
+            }
+            else
+            {
+                return Ok(new { message = "Update success " });
+            }
+        }
 
-        //// POST api/<ValuesController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEmployee(string id)
+        {
+            var status = await _employeeService.DeleteEmployeeAsync(id);
 
-        //// PUT api/<ValuesController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<ValuesController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+            if (status == 0)
+            {
+                return NotFound(new { message = "Employee not found" });
+            }
+            else
+            {
+                return Ok(new { message = "Delete success " });
+            }
+        }
     }
 }
