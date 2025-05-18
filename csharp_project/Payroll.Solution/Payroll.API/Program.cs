@@ -1,9 +1,15 @@
-using System.Data.SqlClient;
-using System.Data;
 using Microsoft.EntityFrameworkCore;
 using Payroll.Modules.HR.Context;
+using Payroll.Modules.HR.Services;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Bind Serilog from appsettings.json
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -14,7 +20,14 @@ builder.Services.AddOpenApi();
 // Add db context for the module here
 builder.Services.AddDbContext<EmployeeContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnectionString")));
 
-builder.Logging.AddConsole();
+// add dependency injection for service
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+// add caching
+builder.Services.AddMemoryCache();
+
+// use serilog logging
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 
