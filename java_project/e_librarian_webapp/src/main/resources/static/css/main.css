@@ -1,0 +1,11 @@
+#main-logo {
+  background: url('../images/main-logo.png') no-repeat;
+  background-size: contain;
+  width: 200px;
+  height: 50px;
+  margin: 10px 15px 10px 5px;
+}
+
+a {
+  text-decoration: none;
+}
