@@ -18,57 +18,57 @@ import com.file.demo.utils.DateUtils;
 import com.file.demo.utils.FileUtils;
 
 public class MainApplication {
-	static FileUtils fileUtils = new FileUtils();
-	static DateUtils dateUtils = new DateUtils();
+    static FileUtils fileUtils = new FileUtils();
+    static DateUtils dateUtils = new DateUtils();
 
-	public static void main(String[] args) throws InterruptedException {
-		Thread thread = new Thread(new MainApplication().new RunnableImpl());
+    public static void main(String[] args) throws InterruptedException {
+        Thread thread = new Thread(new RunnableImpl());
 
-		thread.start();
-		Thread.sleep(10000);
-	}
+        thread.start();
+        Thread.sleep(10000);
+    }
 
-	private class RunnableImpl implements Runnable {
-		@Override
-		public void run() {
-			try {
-        			// Loads file source and destination properties
-				FileSourceResponse sourceResp = fileUtils.getFileDirectory("./config.properties");
+    private static class RunnableImpl implements Runnable {
+        @Override
+        public void run() {
+            try {
+                // Loads file source and destination properties
+                FileSourceResponse sourceResp = fileUtils.getFileDirectory("src/main/resources/config.properties");
 
-				Path sourcePath = Paths.get(sourceResp.getSourceDir());
-				Path destPath = Paths.get(sourceResp.getDestDir());
+                Path sourcePath = Paths.get(sourceResp.getSourceDir());
+                Path destPath = Paths.get(sourceResp.getDestDir());
 
-        			// Create directories if file paths not exists
-				Files.createDirectories(sourcePath);
-				Files.createDirectories(destPath);
+                // Create directories if file paths not exists
+                Files.createDirectories(sourcePath);
+                Files.createDirectories(destPath);
 
-				SAXReader reader = new SAXReader();
+                SAXReader reader = new SAXReader();
 
-        			// Scan through all xml files inside the source path
-				Files.walk(sourcePath).forEach(p -> {
-					try {
-						Document document = reader.read(new File(p.toAbsolutePath().toString()));
-						Element xmlElem = document.getRootElement();
-						Attribute attr = xmlElem.attribute("dateTime");
+                // Scan through all xml files inside the source path
+                Files.walk(sourcePath).forEach(p -> {
+                    try {
+                        Document document = reader.read(new File(p.toAbsolutePath().toString()));
+                        Element xmlElem = document.getRootElement();
+                        Attribute attr = xmlElem.attribute("dateTime");
 
-						RegexResponse resp = dateUtils.dateMatcher(attr.getValue(), "\\d+\\-\\d+\\-\\d+");
-						if(resp.isBool()) {
-							String[] dateArr = resp.getMatcherString().split("\\-");
-							Path newPath = Paths.get(destPath.toString(), dateArr[0], dateArr[1], dateArr[2]);
-							Files.createDirectories(newPath);
+                        RegexResponse resp = dateUtils.dateMatcher(attr.getValue(), "\\d+\\-\\d+\\-\\d+");
+                        if (resp.isBool()) {
+                            String[] dateArr = resp.getMatcherString().split("\\-");
+                            Path newPath = Paths.get(destPath.toString(), dateArr[0], dateArr[1], dateArr[2]);
+                            Files.createDirectories(newPath);
 
-              						// Moves file to destination path
-							Files.move(p.toAbsolutePath(), newPath.resolve(p.getFileName()));
-						} else {
-							System.out.println("not bool");
-						}
-					} catch (DocumentException | IOException e) {
-						e.printStackTrace();
-					}
-				});
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
+                            // Moves file to destination path
+                            Files.move(p.toAbsolutePath(), newPath.resolve(p.getFileName()));
+                        } else {
+                            System.out.println("not bool");
+                        }
+                    } catch (DocumentException | IOException e) {
+                        System.out.println("error when moving the xml file: " + e.getMessage());
+                    }
+                });
+            } catch (Exception e) {
+                System.out.println("error when initializing the file resource: " + e.getMessage());
+            }
+        }
+    }
 }

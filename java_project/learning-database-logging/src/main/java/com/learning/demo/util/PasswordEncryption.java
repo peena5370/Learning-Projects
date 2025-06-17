@@ -14,29 +14,29 @@ public class PasswordEncryption {
 
     public void simplePasswordEncryption() {
         String password = "";
-         String saltvalue = PassBasedEnc.getSaltvalue(30);
+        String saltValue = PassBasedEnc.getSaltValue(30);
 
-         String encryptedpassword = PassBasedEnc.generateSecurePassword(password, saltvalue);
+        String encryptedPassword = PassBasedEnc.generateSecurePassword(password, saltValue);
 
-         System.out.println("Plain text password = " + password);
-         System.out.println("Secure password = " + encryptedpassword);
-         System.out.println("Salt value = " + saltvalue);
+        System.out.println("Plain text password = " + password);
+        System.out.println("Secure password = " + encryptedPassword);
+        System.out.println("Salt value = " + saltValue);
 
-         // verify the original password and encrypted password
-         String hash_ps = "";
-         String salt = "";   
-         Boolean status = PassBasedEnc.verifyUserPassword(password,hash_ps,salt);
- 
-         if(status) {
-         	System.out.println("Password Matched!!");
-         } else  {
-         	System.out.println("Password Mismatched");
-         }
+        // verify the original password and encrypted password
+        String hash_ps = "";
+        String salt = saltValue;
+        boolean status = PassBasedEnc.verifyUserPassword(password, hash_ps, salt);
+
+        if (status) {
+            System.out.println("Password Matched!!");
+        } else {
+            System.out.println("Password Mismatched");
+        }
     }
-    
+
     public void hashPasswordWithMessageDigest() {
-    	String password = "";
-        String encryptedpassword = null;
+        String password = "";
+        String encryptedPassword = null;
         try {
             // MessageDigest instance for MD5.
             MessageDigest m = MessageDigest.getInstance("MD5");
@@ -49,19 +49,19 @@ public class PasswordEncryption {
 
             // The bytes array has bytes in decimal form. Converting it into hexadecimal format.
             StringBuilder s = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++) {
-                s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            for (byte aByte : bytes) {
+                s.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
             }
 
             // Complete hashed password in hexadecimal format
-            encryptedpassword = s.toString();
+            encryptedPassword = s.toString();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            System.out.println("error when encrypting the password");
         }
 
         // Display the unencrypted and encrypted passwords
         System.out.println("Plain-text password: " + password);
-        System.out.println("Encrypted password using MD5: " + encryptedpassword);
+        System.out.println("Encrypted password using MD5: " + encryptedPassword);
     }
 }
 
@@ -71,7 +71,7 @@ class PassBasedEnc {
     private static final int iterations = 100000;
     private static final int keylength = 256;
 
-    public static String getSaltvalue(int length) {
+    public static String getSaltValue(int length) {
         StringBuilder finalval = new StringBuilder(length);
 
         for (int i = 0; i < length; i++) {
@@ -94,21 +94,15 @@ class PassBasedEnc {
     }
 
     public static String generateSecurePassword(String password, String salt) {
-        String finalval = null;
-
         byte[] securePassword = hash(password.toCharArray(), salt.getBytes());
 
-	    finalval = Base64.getEncoder().encodeToString(securePassword);
-
-		return finalval;
+        return Base64.getEncoder().encodeToString(securePassword);
     }
 
     public static boolean verifyUserPassword(String providedPassword, String securedPassword, String salt) {
-        boolean finalval = false;
         String newSecurePassword = generateSecurePassword(providedPassword, salt);
 
-        finalval = newSecurePassword.equalsIgnoreCase(securedPassword);
-        return finalval;
+        return newSecurePassword.equalsIgnoreCase(securedPassword);
     }
 
 }
