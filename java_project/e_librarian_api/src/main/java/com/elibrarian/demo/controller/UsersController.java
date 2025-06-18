@@ -20,32 +20,32 @@ import com.elibrarian.demo.services.UsersService;
 @RestController
 @RequestMapping("/api/users")
 public class UsersController {
-	
-	@Autowired
-	private UsersService usersService;
-	
-	@PostMapping
-	public ResponseEntity<UsersEntity> addUser(@RequestBody UsersEntity user) {
-		return ResponseEntity.ok(usersService.addUser(user));
-	}
-	
-	@GetMapping
-	public ResponseEntity<List<UsersEntity>> viewUsers() {
-		return ResponseEntity.ok(usersService.viewUsers());
-	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<Optional<UsersEntity>> viewUserById(@PathVariable Integer id) {
-		return ResponseEntity.ok(usersService.viewUserById(id));
-	}
-	
-	@PutMapping("/{id}")
-	public ResponseEntity<UsersEntity> updateUser(@RequestBody UsersEntity user) {
-		return ResponseEntity.ok(usersService.updateUser(user));
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Integer> removeUser(@PathVariable Integer id) {
-		return ResponseEntity.ok(usersService.removeUser(id));
-	}
+
+    @Autowired
+    private UsersService usersService;
+
+    @PostMapping
+    public ResponseEntity<UsersEntity> addUser(@RequestBody UsersEntity user) {
+        return ResponseEntity.ok(usersService.addUser(user));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UsersEntity>> viewUsers() {
+        return ResponseEntity.ok(usersService.viewUsers());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<UsersEntity>> viewUserById(@PathVariable Integer id) {
+        return ResponseEntity.ok(usersService.viewUserById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UsersEntity> updateUser(@RequestBody UsersEntity user) {
+        return ResponseEntity.ok(usersService.updateUser(user));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Integer> removeUser(@PathVariable Integer id) {
+        return ResponseEntity.ok(usersService.removeUser(id));
+    }
 }

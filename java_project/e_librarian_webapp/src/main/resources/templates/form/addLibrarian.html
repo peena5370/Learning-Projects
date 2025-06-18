@@ -1,0 +1,30 @@
+<div th:fragment="addLibrarian" xmlns:th="http://www.thymeleaf.org">
+    <h3>Add Librarian</h3>
+    <form th:action="@{/Librarian/AddLibrarian}" method="POST">
+        <div class="form-row">
+            <div class="form-group col-6 mb-3">
+                <label for="librarian_name" class="form-label">Librarian Name</label>
+                <input type="text" class="form-control" id="librarian_name" name="librarian_name"/>
+            </div>
+            <div class="form-group col-6 mb-3">
+                <label for="librarian_email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="librarian_email" name="librarian_email"
+                       placeholder="example123@mail.com"/>
+            </div>
+            <div class="form-group col-6 mb-3">
+                <label for="librarian_password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="librarian_password" name="librarian_password"
+                       aria-describedby="passwordHelp"/>
+                <div id="passwordHelp" class="form-text">The password must contain minimum 1 uppercase, symbols, lowercases
+                    and numbers.&nbsp;The length should between 6 to 12 characters.
+                </div>
+            </div>
+            <div class="form-group col-6 mb-3">
+                <label for="librarian_phone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="librarian_phone" name="librarian_phone"
+                       placeholder="012-2345678"/>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

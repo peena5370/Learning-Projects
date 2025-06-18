@@ -19,27 +19,27 @@ import com.elibrarian.demo.services.IssueBooksService;
 @RestController
 @RequestMapping("/api/issuebook")
 public class IssueBooksController {
-	
-	@Autowired
-	private IssueBooksService issueBooksService;
-	
-	@PostMapping
-	public ResponseEntity<IssueBooksEntity> issueBook(@RequestBody IssueBooksEntity issueBook) {
-		return ResponseEntity.ok(issueBooksService.issueBook(issueBook));
-	}
-	
-	@GetMapping
-	public ResponseEntity<List<IssueBooksEntity>> viewIssueBooks() {
-		return ResponseEntity.ok(issueBooksService.viewIssueBooks());
-	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<Optional<IssueBooksEntity>> viewIssueBooksById(@PathVariable Integer id) {
-		return ResponseEntity.ok(issueBooksService.viewIssueBookById(id));
-	}
-	
-	@PutMapping("/{id}")
-	public ResponseEntity<IssueBooksEntity> returnBook(@RequestBody IssueBooksEntity issueBook) {
-		return ResponseEntity.ok(issueBooksService.returnBook(issueBook));
-	}
+
+    @Autowired
+    private IssueBooksService issueBooksService;
+
+    @PostMapping
+    public ResponseEntity<IssueBooksEntity> issueBook(@RequestBody IssueBooksEntity issueBook) {
+        return ResponseEntity.ok(issueBooksService.issueBook(issueBook));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<IssueBooksEntity>> viewIssueBooks() {
+        return ResponseEntity.ok(issueBooksService.viewIssueBooks());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<IssueBooksEntity>> viewIssueBooksById(@PathVariable Integer id) {
+        return ResponseEntity.ok(issueBooksService.viewIssueBookById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<IssueBooksEntity> returnBook(@RequestBody IssueBooksEntity issueBook) {
+        return ResponseEntity.ok(issueBooksService.returnBook(issueBook));
+    }
 }

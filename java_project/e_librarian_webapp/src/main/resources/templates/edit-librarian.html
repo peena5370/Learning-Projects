@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Librarian - e-Library Management System</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+<header>
+    <div th:replace="~{navigation/admin-nav :: adminNav}"></div>
+</header>
+
+<div class="container">
+    <h3 class="text-center">Librarian Information Update Form</h3>
+
+    <div th:if="${successMessage}" class="alert alert-success" role="alert" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert" th:text="${errorMessage}"></div>
+
+    <form th:action="@{/Librarian/EditLibrarian}" th:object="${librarian}" method="POST">
+        <div class="form-row">
+            <input type="hidden" th:field="*{lib_id}"/> <div class="form-group col-6 mb-3">
+            <label for="librarian_name" class="form-label">Librarian Name</label>
+            <input type="text" class="form-control" id="librarian_name" th:field="*{lib_name}" required/>
+        </div>
+            <div class="form-group col-6 mb-3">
+                <label for="librarian_email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="librarian_email" th:field="*{lib_email}" placeholder="example123@mail.com" required/>
+            </div>
+            <div class="form-group col-6 mb-3">
+                <label for="librarian_password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="librarian_password" th:field="*{lib_pass}"/>
+                <small class="form-text text-muted">Leave blank to keep current password.</small>
+            </div>
+            <div class="form-group col-6 mb-3">
+                <label for="librarian_phone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="librarian_phone" th:field="*{lib_phone}" placeholder="012-2345678"/>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Update</button>
+    </form>
+</div>
+
+<script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

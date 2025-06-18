@@ -20,32 +20,32 @@ import com.elibrarian.demo.services.BooksService;
 @RestController
 @RequestMapping("/api/books")
 public class BooksController {
-	
-	@Autowired
-	private BooksService booksService;
-	
-	@PostMapping
-	public ResponseEntity<BooksEntity> addBook(@RequestBody BooksEntity book) {
-		return ResponseEntity.ok(booksService.addBook(book));
-	}
-	
-	@GetMapping
-	public ResponseEntity<List<BooksEntity>> viewBooks() {
-		return ResponseEntity.ok(booksService.viewBooks());
-	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<Optional<BooksEntity>> viewBookById(@PathVariable Integer id) {
-		return ResponseEntity.ok(booksService.viewBookById(id));
-	}
-	
-	@PutMapping("/{id}")
-	public ResponseEntity<BooksEntity> updateBook(@RequestBody BooksEntity book) {
-		return ResponseEntity.ok(booksService.updateBook(book));
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Integer> removeBook(@PathVariable Integer id) {
-		return ResponseEntity.ok(booksService.removeBook(id));
-	}
+
+    @Autowired
+    private BooksService booksService;
+
+    @PostMapping
+    public ResponseEntity<BooksEntity> addBook(@RequestBody BooksEntity book) {
+        return ResponseEntity.ok(booksService.addBook(book));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<BooksEntity>> viewBooks() {
+        return ResponseEntity.ok(booksService.viewBooks());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<BooksEntity>> viewBookById(@PathVariable Integer id) {
+        return ResponseEntity.ok(booksService.viewBookById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BooksEntity> updateBook(@RequestBody BooksEntity book) {
+        return ResponseEntity.ok(booksService.updateBook(book));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Integer> removeBook(@PathVariable Integer id) {
+        return ResponseEntity.ok(booksService.removeBook(id));
+    }
 }

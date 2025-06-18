@@ -20,32 +20,32 @@ import com.elibrarian.demo.services.LibrariansService;
 @RestController
 @RequestMapping("/api/librarian")
 public class LibrariansController {
-	
-	@Autowired
-	private LibrariansService librariansService;
-	
-	@PostMapping
-	public ResponseEntity<LibrariansEntity> addLibrarian(@RequestBody LibrariansEntity librarian) {
-		return ResponseEntity.ok(librariansService.addLibrarian(librarian));
-	}
-	
-	@GetMapping
-	public ResponseEntity<List<LibrariansEntity>> viewLibrarians() {
-		return ResponseEntity.ok(librariansService.viewLibrarians());
-	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<Optional<LibrariansEntity>> viewLibrarianById(@PathVariable Integer id) {
-		return ResponseEntity.ok(librariansService.viewLibrarianById(id));
-	}
-	
-	@PutMapping("/{id}")
-	public ResponseEntity<LibrariansEntity> updateLibrarian(@RequestBody LibrariansEntity librarian) {
-		return ResponseEntity.ok(librariansService.updateLibrarian(librarian));
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Integer> removeLibrarian(@PathVariable Integer id) {
-		return ResponseEntity.ok(librariansService.removeLibrarian(id));
-	}
+
+    @Autowired
+    private LibrariansService librariansService;
+
+    @PostMapping
+    public ResponseEntity<LibrariansEntity> addLibrarian(@RequestBody LibrariansEntity librarian) {
+        return ResponseEntity.ok(librariansService.addLibrarian(librarian));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<LibrariansEntity>> viewLibrarians() {
+        return ResponseEntity.ok(librariansService.viewLibrarians());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<LibrariansEntity>> viewLibrarianById(@PathVariable Integer id) {
+        return ResponseEntity.ok(librariansService.viewLibrarianById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<LibrariansEntity> updateLibrarian(@RequestBody LibrariansEntity librarian) {
+        return ResponseEntity.ok(librariansService.updateLibrarian(librarian));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Integer> removeLibrarian(@PathVariable Integer id) {
+        return ResponseEntity.ok(librariansService.removeLibrarian(id));
+    }
 }

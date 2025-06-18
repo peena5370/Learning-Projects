@@ -12,42 +12,42 @@ import com.elibrarian.demo.services.BooksService;
 
 @Service
 public class BooksServiceImpl implements BooksService {
-	
-	@Autowired
-	private BooksRepository booksRepository;
 
-	@Override
-	public BooksEntity addBook(BooksEntity book) {
-		return booksRepository.saveAndFlush(book);
-	}
+    @Autowired
+    private BooksRepository booksRepository;
 
-	@Override
-	public List<BooksEntity> viewBooks() {
-		return booksRepository.findAll();
-	}
+    @Override
+    public BooksEntity addBook(BooksEntity book) {
+        return booksRepository.saveAndFlush(book);
+    }
 
-	@Override
-	public Optional<BooksEntity> viewBookById(Integer book_id) {
-		return booksRepository.findById(book_id);
-	}
+    @Override
+    public List<BooksEntity> viewBooks() {
+        return booksRepository.findAll();
+    }
 
-	@Override
-	public BooksEntity updateBook(BooksEntity book) {
-		return booksRepository.saveAndFlush(book);
-	}
+    @Override
+    public Optional<BooksEntity> viewBookById(Integer book_id) {
+        return booksRepository.findById(book_id);
+    }
 
-	@Override
-	public Integer removeBook(Integer book_id) {
-		Integer row = 0;
-		try {
-			booksRepository.deleteById(book_id);
-			row = 1;
-		} catch(IllegalArgumentException e) {
-			e.printStackTrace();
-			row = 0;
-		}
-		
-		return row;
-	}
+    @Override
+    public BooksEntity updateBook(BooksEntity book) {
+        return booksRepository.saveAndFlush(book);
+    }
+
+    @Override
+    public Integer removeBook(Integer book_id) {
+        Integer row = 0;
+        try {
+            booksRepository.deleteById(book_id);
+            row = 1;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            row = 0;
+        }
+
+        return row;
+    }
 
 }
