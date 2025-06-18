@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Books Information Page</title>
+    <link rel="stylesheet" type='text/css' th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type='text/css' th:href="@{/css/main.css}"/>
+</head>
+<body>
+<header>
+    <div th:replace="~{navigation/librarian-nav :: librarianNav}"></div>
+</header>
+
+<div class="container">
+    <h3 class="text-center">Books Information Page</h3>
+
+    <div th:if="${successStatus}" class="alert alert-info" role="alert" th:text="${successStatus}">
+    </div>
+
+    <div th:if="${failStatus}" class="alert alert-danger" role="alert" th:text="${failStatus}">
+    </div>
+
+    <div th:if="${books !=null and !books.empty}">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope='col'>Callno</th>
+                <th scope='col'>Book Name</th>
+                <th scope='col'>Author</th>
+                <th scope='col'>Publisher</th>
+                <th scope='col'>Quantity</th>
+                <th scope='col'>Issued</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${books}">
+                <th scope="row" th:text="${book.callno}"></th>
+                <td th:text="${book.bookname}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.publisher}"></td>
+                <td th:text="${book.bookquantity}"></td>
+                <td th:text="${book.bookissued}"></td>
+                <td>
+                    <a th:href="@{/Books/DeleteBook(callno=${book.callno})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${books == null or books.empty}" class="alert alert-info" role="alert">
+        No books found.
+    </div>
+</div>
+
+<script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
