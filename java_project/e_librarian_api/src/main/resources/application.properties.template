@@ -6,7 +6,8 @@ spring.datasource.password=password
 spring.jpa.hibernate.naming.implicit-strategy=org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
 spring.jpa.open-in-view=false
 spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true
-spring.jpa.properties.hibernate.hbm2ddl.auto=update
+# use 'update' if want hibernate update table schema, else use none
+spring.jpa.properties.hibernate.hbm2ddl.auto=none
 spring.jpa.show-sql=true
 
 spring.datasource.type=com.zaxxer.hikari.HikariDataSource

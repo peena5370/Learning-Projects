@@ -1,5 +1,7 @@
 CREATE DATABASE `elibrarian`;
 
+USE `elibrarian`;
+
 SET FOREIGN_KEY_CHECKS=0;
 
 CREATE TABLE  `e_books` (
@@ -13,7 +15,6 @@ CREATE TABLE  `e_books` (
   PRIMARY KEY(book_id)
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS `e_issuebooks`;
 CREATE TABLE `e_issuebooks` (
   `issue_id` INT NOT NULL AUTO_INCREMENT COMMENT 'issue book id',
   `issued_date` DATETIME NULL COMMENT 'book issue date',
@@ -25,7 +26,6 @@ CREATE TABLE `e_issuebooks` (
   FOREIGN KEY(stud_id) REFERENCES `e_students`(stud_id)
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS `e_librarian`;
 CREATE TABLE `e_librarian` (
   `lib_id` INT NOT NULL AUTO_INCREMENT COMMENT 'librarian id',
   `lib_name` VARCHAR(100) NOT NULL COMMENT 'librarian name',
@@ -37,7 +37,6 @@ CREATE TABLE `e_librarian` (
 ) ENGINE=InnoDB;
 
 
-DROP TABLE IF EXISTS `e_students`;
 CREATE TABLE `e_students` (
   `stud_id` INT NOT NULL AUTO_INCREMENT COMMENT 'student id',
   `stud_name` VARCHAR(100) NOT NULL COMMENT 'student name',
@@ -46,7 +45,6 @@ CREATE TABLE `e_students` (
   PRIMARY KEY(stud_id)
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS `e_users`;
 CREATE TABLE `e_users` (
   `u_id` INT NOT NULL AUTO_INCREMENT COMMENT 'user id',
   `username` VARCHAR(20) NOT NULL UNIQUE COMMENT 'username',

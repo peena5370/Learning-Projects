@@ -20,32 +20,32 @@ import com.elibrarian.demo.services.StudentsService;
 @RestController
 @RequestMapping("/api/students")
 public class StudentsController {
-	
-	@Autowired
-	private StudentsService studentsService;
-	
-	@PostMapping
-	public ResponseEntity<StudentsEntity> addStudent(@RequestBody StudentsEntity student) {
-		return ResponseEntity.ok(studentsService.addStudent(student));
-	}
-	
-	@GetMapping
-	public ResponseEntity<List<StudentsEntity>> viewStudents() {
-		return ResponseEntity.ok(studentsService.viewStudents());
-	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<Optional<StudentsEntity>> viewStudentById(@PathVariable Integer id) {
-		return ResponseEntity.ok(studentsService.viewStudentById(id));
-	}
-	
-	@PutMapping("/{id}")
-	public ResponseEntity<StudentsEntity> updateStudent(@RequestBody StudentsEntity student) {
-		return ResponseEntity.ok(studentsService.updateStudent(student));
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Integer> removeStudent(@PathVariable Integer id) {
-		return ResponseEntity.ok(studentsService.removeStudent(id));
-	}
+
+    @Autowired
+    private StudentsService studentsService;
+
+    @PostMapping
+    public ResponseEntity<StudentsEntity> addStudent(@RequestBody StudentsEntity student) {
+        return ResponseEntity.ok(studentsService.addStudent(student));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<StudentsEntity>> viewStudents() {
+        return ResponseEntity.ok(studentsService.viewStudents());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<StudentsEntity>> viewStudentById(@PathVariable Integer id) {
+        return ResponseEntity.ok(studentsService.viewStudentById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<StudentsEntity> updateStudent(@RequestBody StudentsEntity student) {
+        return ResponseEntity.ok(studentsService.updateStudent(student));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Integer> removeStudent(@PathVariable Integer id) {
+        return ResponseEntity.ok(studentsService.removeStudent(id));
+    }
 }

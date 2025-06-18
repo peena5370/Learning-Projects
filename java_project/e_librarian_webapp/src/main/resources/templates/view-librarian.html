@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Librarian Information Page</title>
+    <link rel="stylesheet" type='text/css' th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type='text/css' th:href="@{/css/main.css}"/>
+</head>
+<body>
+    <header>
+        <div th:replace="~{navigation/admin-nav :: adminNav}"></div>
+    </header>
+
+    <div class="container">
+        <h3 class="text-center">Librarian Information Page</h3>
+
+        <div th:if="${successStatus}" class="alert alert-info" role="alert" th:text="${successStatus}">
+        </div>
+
+        <div th:if="${failStatus}" class="alert alert-danger" role="alert" th:text="${failStatus}">
+        </div>
+
+        <div th:if="${librarians !=null and !librarians.empty}">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="librarian : ${librarians}">
+                    <th scope="row" th:text="${librarian.lib_id}"></th>
+                    <td th:text="${librarian.lib_name}"></td>
+                    <td th:text="${librarian.lib_email}"></td>
+                    <td th:text="${librarian.lib_pass}"></td>
+                    <td th:text="${librarian.lib_phone}"></td>
+                    <td>
+                        <a th:href="@{/Librarian/EditLibrarian(id=${librarian.lib_id})}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/Librarian/DeleteLibrarian(id=${librarian.lib_id})}">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${librarians == null or librarians.empty}" class="alert alert-info" role="alert">
+            No librarians found.
+        </div>
+    </div>
+
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
