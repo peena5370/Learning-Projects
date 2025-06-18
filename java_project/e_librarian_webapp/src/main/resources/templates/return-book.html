@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Return Book Form Page</title>
+    <link rel="stylesheet" type='text/css' th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type='text/css' th:href="@{/css/main.css}"/>
+</head>
+<body>
+<header>
+    <div th:replace="~{navigation/librarian-nav :: librarianNav}"></div>
+</header>
+
+<div th:if="${successStatus}" class="alert alert-info" role="alert" th:text="${successStatus}">
+</div>
+
+<div th:if="${failStatus}" class="alert alert-danger" role="alert" th:text="${failStatus}">
+</div>
+
+<div class="container">
+    <div th:replace="~{form/returnBook :: returnBook}"></div>
+</div>
+
+<script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

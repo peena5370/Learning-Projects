@@ -1,14 +1,16 @@
-<h3>Return Book Form</h3>
-<form action="ReturnBook" method="POST">
-    <div class="form-row">
-        <div class="form-group col-8 mb-3">
-            <label for="book_callno" class="form-label">Callno</label>
-            <input type="text" class="form-control" id="book_callno" name="book_callno"/>
+<div th:fragment="returnBook" xmlns:th="http://www.thymeleaf.org">
+    <h3>Return Book Form</h3>
+    <form th:action="@{/Books/ReturnBook}" method="POST">
+        <div class="form-row">
+            <div class="form-group col-8 mb-3">
+                <label for="book_callno" class="form-label">Callno</label>
+                <input type="text" class="form-control" id="book_callno" name="book_callno"/>
+            </div>
+            <div class="form-group col-8 mb-3">
+                <label for="student_id" class="form-label">Student ID</label>
+                <input type="text" class="form-control" id="student_id" name="student_id"/>
+            </div>
         </div>
-        <div class="form-group col-8 mb-3">
-            <label for="student_id" class="form-label">Student ID</label>
-            <input type="text" class="form-control" id="student_id" name="student_id"/>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Return Book</button>
-</form>
+        <button type="submit" class="btn btn-primary">Return Book</button>
+    </form>
+</div>
