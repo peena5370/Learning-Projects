@@ -1,6 +1,5 @@
 from common.abstract_class import AbstractUtilClass
 
-
 class InheritUtilClass(AbstractUtilClass):
     def __init__(self, name: str, breed: str):
         super().__init__(name)

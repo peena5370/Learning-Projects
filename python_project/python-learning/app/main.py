@@ -1,6 +1,8 @@
 """
 Python basic learning
 """
+import threading
+from multithreading.common_threading import CommonThreading
 from common.inherit_class import InheritUtilClass
 from common.common_util import CommonUtil
 from model.book import Book
@@ -75,13 +77,13 @@ print(f"book data using dataclass: {bookData.book_name}, serial: {bookData.book_
 bookPydantic = BookPydantic(name="new book1", serial=22222222)
 print(f"book using pydantic to declare model class: {bookPydantic.name}")
 try:
-    declareWrongTypeVal = BookPydantic(name=123456, serial=123456)
+    declareWrongTypeVal = BookPydantic(name=123456, serial=123456) # type: ignore
 except Exception as e:
     print(f"exception occured when assigning wrong type of value: {e}")
 
 # python inheritance
 print("\n--- python inheritance and polymorphism ---")
-inheritedClass = InheritUtilClass("Jiobee", "miao")
+inheritedClass = InheritUtilClass("MiaoMiao", "miao")
 print(f"inheritted class: name={inheritedClass.name}, breed={inheritedClass.breed}, speak: {inheritedClass.speak()}")
 inheritedClass.print_child_and_parent_class_method()
 inheritedClass.override_parent_class()
@@ -118,3 +120,21 @@ try:
     util.is_value_is_int("input string")
 except Exception as e:
     print(f"exception raised from the method: {e}")
+
+# python multithreading
+print("\n--- python multithreading ---")
+shared_list = []
+commonThreading = CommonThreading(shared_list)
+
+thread1 = threading.Thread(target=commonThreading.append_message, args=(1001, 5))
+thread2 = threading.Thread(target=commonThreading.append_message, args=(1002, 5))
+
+thread1.start()
+thread2.start()
+
+thread1.join()
+thread2.join()
+
+print("Final state of the shared list:")
+print(shared_list)
+print(f"Total messages appended: {len(shared_list)}")
