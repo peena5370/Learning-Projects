@@ -2,6 +2,10 @@
 Python basic learning
 """
 import threading
+from service.async_role_service import AsyncRoleService
+from database.sync_db import get_db
+from config.pydantic_config import get_settings
+from config.common_config import CommonConfig
 from multithreading.common_threading import CommonThreading
 from common.inherit_class import InheritUtilClass
 from common.common_util import CommonUtil
@@ -138,3 +142,22 @@ thread2.join()
 print("Final state of the shared list:")
 print(shared_list)
 print(f"Total messages appended: {len(shared_list)}")
+
+# python read config values
+print("\n--- python read config values ---")
+CommonConfig.get_config_values()
+
+settings = get_settings()
+print(f"pydantic settings: config.val1={settings.config.val1}, config.val2={settings.config.val2}, \
+      database_host={settings.database_host}, database_password={settings.database_password}, \
+        database_password(unencrypted)={settings.database_password.get_secret_value()}")
+
+# python database
+print("\n--- python database ---")
+with next(get_db()) as db:
+    sync_service = AsyncRoleService()
+    roles = sync_service.get_roles(db)
+
+    if(roles):
+        for role in roles:
+            print(f"role: {role.role_id}, role_name: {role.role_name}")
