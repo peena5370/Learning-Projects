@@ -1,4 +1,4 @@
-### Command for generating keystore file using java keytool
+### Command for generating keystore file using java keytool and openssl
 
 - Generate keystore command
 ```shell
