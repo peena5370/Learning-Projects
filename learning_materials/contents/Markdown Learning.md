@@ -181,11 +181,11 @@ Output:
 
 ```markdown
 ![img](https://www.runoob.com/wp-content/uploads/2019/03/md-flow.png)
-![markdown](./Pictures/markdown-logo.png)
+![markdown](../Pictures/markdown-logo.png)
 ```
 
 Output:  
-![markdown](./Pictures/markdown-logo.png)
+![markdown](../Pictures/markdown-logo.png)
 
 ### List
 

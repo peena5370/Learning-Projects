@@ -432,3 +432,13 @@ setup.kibana:
 > docker inspect filebeat | grep /var/log/app
 > docker inspect {containerServiceName} | grep /var/log/app
 ```
+
+### Installing 'fake' SMTP server using docker
+```shell
+# installing mailhog
+# use localhost:1025 to send email to smtp server, use localhost:8025 to access the email UI
+docker run -p 1025:1025 -p 8025:8025 mailhog/mailhog
+# installing mailpit
+# use localhost:1025 to send email to smtp server, use localhost:8025 to access the email UI
+docker run -p 1025:1025 -p 8025:8025 axllent/mailpit
+```
