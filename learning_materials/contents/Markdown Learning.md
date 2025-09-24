@@ -185,7 +185,7 @@ Output:
 ```
 
 Output:  
-![markdown](./Pictures/markdown-logo.png)
+![markdown](../Pictures/markdown-logo.png)
 
 ### List
 
@@ -348,3 +348,4 @@ Please press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> to restart the comput
 
 Output:
 ![img](https://www.runoob.com/wp-content/uploads/2019/03/md-flow.png)
+
