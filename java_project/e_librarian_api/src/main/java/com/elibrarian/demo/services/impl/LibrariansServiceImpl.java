@@ -3,6 +3,7 @@ package com.elibrarian.demo.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,16 @@ import com.elibrarian.demo.model.LibrariansEntity;
 import com.elibrarian.demo.repos.LibrariansRepository;
 import com.elibrarian.demo.services.LibrariansService;
 
+@Slf4j
 @Service
 public class LibrariansServiceImpl implements LibrariansService {
 
-	@Autowired
-	private LibrariansRepository librariansRepository;
+	private final LibrariansRepository librariansRepository;
+
+    @Autowired
+    public LibrariansServiceImpl(LibrariansRepository librariansRepository) {
+        this.librariansRepository = librariansRepository;
+    }
 	
 	@Override
 	public LibrariansEntity addLibrarian(LibrariansEntity librarian) {
@@ -37,14 +43,13 @@ public class LibrariansServiceImpl implements LibrariansService {
 	}
 
 	@Override
-	public Integer removeLibrarian(Integer libId) {
-		Integer row = 0;
+	public int removeLibrarian(Integer libId) {
+        int row = 0;
 		try {
 			librariansRepository.deleteById(libId);
 			row = 1;
 		} catch(IllegalArgumentException e) {
-			e.printStackTrace();
-			row = 0;
+			log.error("Exception encountered when remove librarian: {}", e.getMessage());
 		}
 		
 		return row;

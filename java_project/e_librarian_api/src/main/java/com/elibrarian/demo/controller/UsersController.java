@@ -21,8 +21,12 @@ import com.elibrarian.demo.services.UsersService;
 @RequestMapping("/api/users")
 public class UsersController {
 
+    private final UsersService usersService;
+
     @Autowired
-    private UsersService usersService;
+    public UsersController(UsersService usersService) {
+        this.usersService = usersService;
+    }
 
     @PostMapping
     public ResponseEntity<UsersEntity> addUser(@RequestBody UsersEntity user) {

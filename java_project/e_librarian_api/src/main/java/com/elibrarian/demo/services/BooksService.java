@@ -11,9 +11,9 @@ public interface BooksService {
 
     CompletableFuture<List<BooksEntity>> viewBooks();
 
-    Optional<BooksEntity> viewBookById(Integer book_id);
+    Optional<BooksEntity> viewBookById(Integer bookId);
 
     BooksEntity updateBook(BooksEntity book);
 
-    Integer removeBook(Integer book_id);
+    int removeBook(Integer bookId);
 }

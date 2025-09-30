@@ -13,12 +13,16 @@ import com.elibrarian.demo.services.IssueBooksService;
 
 @Service
 public class IssueBooksServiceImpl implements IssueBooksService {
-	
-	@Autowired
-	private BooksRepository booksRepository;
-	
-	@Autowired
-	private IssueBooksRepository issueBooksRepository;
+
+	private final BooksRepository booksRepository;
+
+	private final IssueBooksRepository issueBooksRepository;
+
+    @Autowired
+    public IssueBooksServiceImpl(BooksRepository booksRepository, IssueBooksRepository issueBooksRepository) {
+        this.booksRepository = booksRepository;
+        this.issueBooksRepository = issueBooksRepository;
+    }
 	
 	@Override
 	public IssueBooksEntity issueBook(IssueBooksEntity issueBook) {

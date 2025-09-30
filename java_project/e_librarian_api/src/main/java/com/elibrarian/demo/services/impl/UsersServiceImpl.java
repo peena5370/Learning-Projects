@@ -3,6 +3,7 @@ package com.elibrarian.demo.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,16 @@ import com.elibrarian.demo.model.UsersEntity;
 import com.elibrarian.demo.repos.UsersRepository;
 import com.elibrarian.demo.services.UsersService;
 
+@Slf4j
 @Service
 public class UsersServiceImpl implements UsersService {
-	
-	@Autowired
-	private UsersRepository usersRepository;
+
+	private final UsersRepository usersRepository;
+
+    @Autowired
+    public UsersServiceImpl(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
+    }
 
 	@Override
 	public UsersEntity addUser(UsersEntity user) {
@@ -42,15 +48,14 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public Integer removeUser(Integer uId) {
-		Integer row = 0;
+	public int removeUser(Integer uId) {
+        int row = 0;
 		try {
 			usersRepository.deleteById(uId);
 			row = 1;
 		} catch(IllegalArgumentException e) {
-			e.printStackTrace();
-			row = 0;
-		}
+			log.error("Exception encountered when remove user: {}", e.getMessage());
+        }
 		
 		return row;
 	}

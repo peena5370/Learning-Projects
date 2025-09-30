@@ -17,25 +17,25 @@ import lombok.Data;
 @EntityListeners(value = AuditingEntityListener.class)
 public class BooksEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer book_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer book_id;
 
-	@Column(name = "callno", unique = true, nullable = false)
-	private String callno;
+    @Column(name = "callno", unique = true, nullable = false)
+    private String callno;
 
-	@Column(name = "book_name", nullable = false)
-	private String bookname;
+    @Column(name = "book_name", nullable = false)
+    private String bookname;
 
-	@Column(name = "author")
-	private String author;
+    @Column(name = "author")
+    private String author;
 
-	@Column(name = "publisher")
-	private String publisher;
+    @Column(name = "publisher")
+    private String publisher;
 
-	@Column(name = "book_quantity")
-	private int bookquantity;
+    @Column(name = "book_quantity")
+    private int bookquantity;
 
-	@Column(name = "book_issued")
-	private int bookissued;
+    @Column(name = "book_issued")
+    private int bookissued;
 }
