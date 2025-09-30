@@ -21,3 +21,9 @@ server.servlet.context-path=/elibrarian
 
 # spring.thymeleaf.prefix=classpath:/templates/
 # spring.thymeleaf.suffix=.html
+
+# redis configuration
+spring.redis.host=localhost
+spring.redis.port=6379
+# spring.redis.password=password
+# spring.redis.timeout=3000ms

@@ -17,22 +17,22 @@ import lombok.Data;
 @Table(name = "e_issuebooks")
 public class IssueBooksEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "issue_id")
-	private Integer issueid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "issue_id")
+    private Integer issueid;
 
-	@Column(name = "issued_date")
-	private LocalDateTime issueddate;
+    @Column(name = "issued_date")
+    private LocalDateTime issueddate;
 
-	@Column(name = "return_status")
-	private String returnstatus;
+    @Column(name = "return_status")
+    private String returnstatus;
 
-	@OneToOne
-	@JoinColumn(name = "book_id")
-	private BooksEntity books;
+    @OneToOne
+    @JoinColumn(name = "book_id")
+    private BooksEntity books;
 
-	@OneToOne
-	@JoinColumn(name = "stud_id")
-	private StudentsEntity students;
+    @OneToOne
+    @JoinColumn(name = "stud_id")
+    private StudentsEntity students;
 }

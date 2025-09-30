@@ -17,8 +17,12 @@ import com.elibrarian.demo.services.UsersService;
 @RequestMapping("/api")
 public class LoginController {
 
+    private final UsersService usersService;
+
     @Autowired
-    private UsersService usersService;
+    public LoginController(UsersService usersService) {
+        this.usersService = usersService;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UsersEntity user) {

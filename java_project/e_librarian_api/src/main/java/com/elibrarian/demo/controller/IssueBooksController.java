@@ -20,8 +20,12 @@ import com.elibrarian.demo.services.IssueBooksService;
 @RequestMapping("/api/issuebook")
 public class IssueBooksController {
 
+    private final IssueBooksService issueBooksService;
+
     @Autowired
-    private IssueBooksService issueBooksService;
+    public IssueBooksController(IssueBooksService issueBooksService) {
+        this.issueBooksService = issueBooksService;
+    }
 
     @PostMapping
     public ResponseEntity<IssueBooksEntity> issueBook(@RequestBody IssueBooksEntity issueBook) {

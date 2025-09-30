@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
+import com.elibrarian.demo.services.RedisService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -29,12 +29,14 @@ import com.elibrarian.demo.services.BooksService;
 @RequestMapping("/api/books")
 public class BooksController {
 
-    private BooksService booksService;
+    private final BooksService booksService;
     private final TransactionTemplate transactionTemplate;
+    private final RedisService redisService;
 
-    public BooksController(BooksService booksService, PlatformTransactionManager platformTransactionManager) {
+    public BooksController(BooksService booksService, PlatformTransactionManager platformTransactionManager, RedisService redisService) {
         this.booksService = booksService;
         this.transactionTemplate = new TransactionTemplate(platformTransactionManager);
+        this.redisService = redisService;
     }
 
     @PostMapping
@@ -42,9 +44,33 @@ public class BooksController {
         return ResponseEntity.ok(booksService.addBook(book));
     }
 
+    @GetMapping("test-redis")
+    public ResponseEntity<String> testRedisStore() {
+        log.info("redis service started");
+
+        String key = "session:key:001";
+        redisService.set(key, "redis_value_1", 30, TimeUnit.SECONDS);
+
+        String value = (String) redisService.get(key);
+        log.info("redis service get value: {}", value);
+
+        try {
+            Thread.sleep(35000);
+        } catch (InterruptedException e) {
+            log.error("Exception encountered for sleep: {}", e.getMessage());
+        }
+
+        String value2 = (String) redisService.get(key);
+        log.info("value after sleep for over 30 seconds: {}", value2);
+
+        return ResponseEntity.ok("success");
+    }
+
+
     /**
      * For functional programming, transaction only will rollback if exception being thrown out of the try catch block<br/>
      * or you can implement setRollbackOnly() to manually rollback the transaction
+     *
      * @param book bookentity
      * @return
      */
@@ -76,6 +102,7 @@ public class BooksController {
      * For declarative programming, transaction only rollback commit when unchecked exception being thrown in the annotated method <br/>
      * if want to rollback on checked exception, need to add in @Transactional(rollbackFor = IOException.class) in order to
      * rollback the commit
+     *
      * @param book bookentity
      * @return
      */

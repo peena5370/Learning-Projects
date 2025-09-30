@@ -21,25 +21,25 @@ import lombok.Data;
 @EntityListeners(value = AuditingEntityListener.class)
 public class UsersEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "u_id")
-	private Integer uId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "u_id")
+    private Integer uId;
 
-	@Column(name = "username", unique = true, nullable = false)
-	private String username;
+    @Column(name = "username", unique = true, nullable = false)
+    private String username;
 
-	@Column(name = "password")
-	private String password;
+    @Column(name = "password")
+    private String password;
 
-	@Column(name = "secretkey")
-	private String secretkey;
+    @Column(name = "secretkey")
+    private String secretkey;
 
-	@CreatedDate
-	@Column(name = "createtime", updatable = false)
-	private LocalDateTime createtime;
+    @CreatedDate
+    @Column(name = "createtime", updatable = false)
+    private LocalDateTime createtime;
 
-	@LastModifiedDate
-	@Column(name = "updatetime")
-	private LocalDateTime updatetime;
+    @LastModifiedDate
+    @Column(name = "updatetime")
+    private LocalDateTime updatetime;
 }

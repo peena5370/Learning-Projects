@@ -21,8 +21,12 @@ import com.elibrarian.demo.services.StudentsService;
 @RequestMapping("/api/students")
 public class StudentsController {
 
+    private final StudentsService studentsService;
+
     @Autowired
-    private StudentsService studentsService;
+    public StudentsController(StudentsService studentsService) {
+        this.studentsService = studentsService;
+    }
 
     @PostMapping
     public ResponseEntity<StudentsEntity> addStudent(@RequestBody StudentsEntity student) {

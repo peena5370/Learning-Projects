@@ -16,10 +16,13 @@ public class PasswordBasedEncryption {
     private static final int iterations = 10000;
     private static final int keylength = 256;
 
+    private PasswordBasedEncryption() {
+
+    }
     /**
      * Method to generate the salt value.
      *
-     * @param lentgh Salt value length
+     * @param length Salt value length
      * @return salt string
      */
     public static String getSaltvalue(int length) {
@@ -87,22 +90,22 @@ public class PasswordBasedEncryption {
      * @return boolean
      */
     public static boolean passwordValidate(String password) {
-        String hashed_password = "";
+        String hashedPassword = "";
         String hashSaltValue = "";
 
-        return verifyUserPassword(password, hashed_password, hashSaltValue);
+        return verifyUserPassword(password, hashedPassword, hashSaltValue);
     }
 
     /**
      * Validate user password and salt value from database
      *
      * @param password        Get user password
-     * @param hashed_password Get database hash password
+     * @param hashedPassword Get database hash password
      * @param hashSaltValue   Get database hash salt value
      * @return boolean
      */
-    public static boolean userAuthentication(String password, String hashed_password, String hashSaltValue) {
+    public static boolean userAuthentication(String password, String hashedPassword, String hashSaltValue) {
 
-        return verifyUserPassword(password, hashed_password, hashSaltValue);
+        return verifyUserPassword(password, hashedPassword, hashSaltValue);
     }
 }

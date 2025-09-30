@@ -14,5 +14,5 @@ public interface StudentsService {
 
     StudentsEntity updateStudent(StudentsEntity student);
 
-    Integer removeStudent(Integer studId);
+    int removeStudent(Integer studId);
 }

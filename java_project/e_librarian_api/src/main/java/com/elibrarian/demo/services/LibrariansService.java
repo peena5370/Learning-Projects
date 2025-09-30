@@ -14,5 +14,5 @@ public interface LibrariansService {
 
     LibrariansEntity updateLibrarian(LibrariansEntity librarian);
 
-    Integer removeLibrarian(Integer libId);
+    int removeLibrarian(Integer libId);
 }

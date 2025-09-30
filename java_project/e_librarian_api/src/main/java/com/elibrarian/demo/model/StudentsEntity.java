@@ -13,17 +13,17 @@ import lombok.Data;
 @Table(name = "e_students")
 public class StudentsEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "stud_id")
-	private Integer studId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "stud_id")
+    private Integer studId;
 
-	@Column(name = "stud_name", nullable = false)
-	private String studName;
+    @Column(name = "stud_name", nullable = false)
+    private String studName;
 
-	@Column(name = "stud_phone")
-	private String studPhone;
+    @Column(name = "stud_phone")
+    private String studPhone;
 
-	@Column(name = "stud_email")
-	private String studEmail;
+    @Column(name = "stud_email")
+    private String studEmail;
 }

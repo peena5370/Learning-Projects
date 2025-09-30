@@ -21,8 +21,12 @@ import com.elibrarian.demo.services.LibrariansService;
 @RequestMapping("/api/librarian")
 public class LibrariansController {
 
+    private final LibrariansService librariansService;
+
     @Autowired
-    private LibrariansService librariansService;
+    public LibrariansController(LibrariansService librariansService) {
+        this.librariansService = librariansService;
+    }
 
     @PostMapping
     public ResponseEntity<LibrariansEntity> addLibrarian(@RequestBody LibrariansEntity librarian) {

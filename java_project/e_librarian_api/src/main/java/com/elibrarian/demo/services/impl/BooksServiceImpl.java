@@ -17,8 +17,12 @@ import com.elibrarian.demo.services.BooksService;
 @Service
 public class BooksServiceImpl implements BooksService {
 
+    private final BooksRepository booksRepository;
+
     @Autowired
-    private BooksRepository booksRepository;
+    public BooksServiceImpl(BooksRepository booksRepository) {
+        this.booksRepository = booksRepository;
+    }
 
     @Override
     public BooksEntity addBook(BooksEntity book) {
@@ -36,8 +40,8 @@ public class BooksServiceImpl implements BooksService {
     }
 
     @Override
-    public Optional<BooksEntity> viewBookById(Integer book_id) {
-        return booksRepository.findById(book_id);
+    public Optional<BooksEntity> viewBookById(Integer bookId) {
+        return booksRepository.findById(bookId);
     }
 
     @Override
@@ -46,14 +50,13 @@ public class BooksServiceImpl implements BooksService {
     }
 
     @Override
-    public Integer removeBook(Integer book_id) {
-        Integer row = 0;
+    public int removeBook(Integer bookId) {
+        int row = 0;
         try {
-            booksRepository.deleteById(book_id);
+            booksRepository.deleteById(bookId);
             row = 1;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            row = 0;
+            log.error("Exception encountered when removing book: {}", e.getMessage());
         }
 
         return row;
