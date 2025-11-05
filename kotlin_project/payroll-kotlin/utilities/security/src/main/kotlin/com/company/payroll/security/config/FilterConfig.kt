@@ -1,0 +1,23 @@
+package com.company.payroll.security.config
+
+import com.company.payroll.security.filter.ServletFilter
+import org.springframework.boot.web.servlet.FilterRegistrationBean
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+
+@Configuration
+class FilterConfig
+{
+
+    @Bean
+    fun testFilterRegister(): FilterRegistrationBean<ServletFilter>
+    {
+        val register: FilterRegistrationBean<ServletFilter> = FilterRegistrationBean()
+        register.filter = ServletFilter()
+        register.addUrlPatterns("/*")
+        register.setName("Servlet-Filter")
+        register.order = 1
+
+        return register
+    }
+}

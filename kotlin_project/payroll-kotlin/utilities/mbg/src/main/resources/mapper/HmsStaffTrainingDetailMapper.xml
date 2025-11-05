@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.payroll.mbg.mapper.HmsStaffTrainingDetailMapper">
+  <resultMap id="BaseResultMap" type="com.company.payroll.mbg.model.HmsStaffTrainingDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="staff_id" jdbcType="BIGINT" property="staffId" />
+    <result column="training_title" jdbcType="VARCHAR" property="trainingTitle" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.company.payroll.mbg.model.HmsStaffTrainingDetail">
+    <result column="training_description" jdbcType="LONGVARCHAR" property="trainingDescription" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, staff_id, training_title, start_date, end_date, modified_date, modified_by
+  </sql>
+  <sql id="Blob_Column_List">
+    training_description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hms_staff_training_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hms_staff_training_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.company.payroll.mbg.model.HmsStaffTrainingDetail">
+    insert into hms_staff_training_detail (id, staff_id, training_title, 
+      start_date, end_date, modified_date, 
+      modified_by, training_description)
+    values (#{id,jdbcType=BIGINT}, #{staffId,jdbcType=BIGINT}, #{trainingTitle,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{modifiedDate,jdbcType=TIMESTAMP}, 
+      #{modifiedBy,jdbcType=BIGINT}, #{trainingDescription,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.payroll.mbg.model.HmsStaffTrainingDetail">
+    insert into hms_staff_training_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="trainingTitle != null">
+        training_title,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+      <if test="modifiedBy != null">
+        modified_by,
+      </if>
+      <if test="trainingDescription != null">
+        training_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="trainingTitle != null">
+        #{trainingTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        #{modifiedBy,jdbcType=BIGINT},
+      </if>
+      <if test="trainingDescription != null">
+        #{trainingDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.payroll.mbg.model.HmsStaffTrainingDetail">
+    update hms_staff_training_detail
+    <set>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="trainingTitle != null">
+        training_title = #{trainingTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        modified_by = #{modifiedBy,jdbcType=BIGINT},
+      </if>
+      <if test="trainingDescription != null">
+        training_description = #{trainingDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.company.payroll.mbg.model.HmsStaffTrainingDetail">
+    update hms_staff_training_detail
+    set staff_id = #{staffId,jdbcType=BIGINT},
+      training_title = #{trainingTitle,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT},
+      training_description = #{trainingDescription,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.payroll.mbg.model.HmsStaffTrainingDetail">
+    update hms_staff_training_detail
+    set staff_id = #{staffId,jdbcType=BIGINT},
+      training_title = #{trainingTitle,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

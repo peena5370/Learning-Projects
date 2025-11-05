@@ -1,0 +1,24 @@
+CECommerce.Solution/.vs/
+# project 
+CECommerce.Solution/CECommerce.API/Logs/
+CECommerce.Solution/CECommerce.API/bin/
+CECommerce.Solution/CECommerce.API/obj/
+CECommerce.Solution/CECommerce.API/CECommerce.API.csproj.user
+CECommerce.Solution/CECommerce.API/appsettings.json
+CECommerce.Solution/CECommerce.API/appsettings.Development.json
+CECommerce.Solution/CECommerce.Module.Cart/bin/
+CECommerce.Solution/CECommerce.Module.Cart/obj/
+CECommerce.Solution/CECommerce.Module.Core/bin/
+CECommerce.Solution/CECommerce.Module.Core/obj/
+CECommerce.Solution/CECommerce.Module.Delivery/bin/
+CECommerce.Solution/CECommerce.Module.Delivery/obj/
+CECommerce.Solution/CECommerce.Module.Order/bin/
+CECommerce.Solution/CECommerce.Module.Order/obj/
+CECommerce.Solution/CECommerce.Module.Payment/bin/
+CECommerce.Solution/CECommerce.Module.Payment/obj/
+CECommerce.Solution/CECommerce.Module.Product/bin/
+CECommerce.Solution/CECommerce.Module.Product/obj/
+CECommerce.Solution/CECommerce.Module.User/bin/
+CECommerce.Solution/CECommerce.Module.User/obj/
+CECommerce.Solution/CECommerce.Utility/bin/
+CECommerce.Solution/CECommerce.Utility/obj/

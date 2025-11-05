@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.payroll.mbg.mapper.HmsStaffAppraisalMapper">
+  <resultMap id="BaseResultMap" type="com.company.payroll.mbg.model.HmsStaffAppraisal">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="salary_current" jdbcType="DECIMAL" property="salaryCurrent" />
+    <result column="salary_appraised" jdbcType="DECIMAL" property="salaryAppraised" />
+    <result column="date_appraised_start" jdbcType="DATE" property="dateAppraisedStart" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="position_id" jdbcType="BIGINT" property="positionId" />
+    <result column="staff_id" jdbcType="BIGINT" property="staffId" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.company.payroll.mbg.model.HmsStaffAppraisal">
+    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, salary_current, salary_appraised, date_appraised_start, status, position_id, 
+    staff_id, modified_date, modified_by
+  </sql>
+  <sql id="Blob_Column_List">
+    comment
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hms_staff_appraisal
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hms_staff_appraisal
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.company.payroll.mbg.model.HmsStaffAppraisal">
+    insert into hms_staff_appraisal (id, salary_current, salary_appraised, 
+      date_appraised_start, status, position_id, 
+      staff_id, modified_date, modified_by, 
+      comment)
+    values (#{id,jdbcType=BIGINT}, #{salaryCurrent,jdbcType=DECIMAL}, #{salaryAppraised,jdbcType=DECIMAL}, 
+      #{dateAppraisedStart,jdbcType=DATE}, #{status,jdbcType=TINYINT}, #{positionId,jdbcType=BIGINT}, 
+      #{staffId,jdbcType=BIGINT}, #{modifiedDate,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=BIGINT}, 
+      #{comment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.payroll.mbg.model.HmsStaffAppraisal">
+    insert into hms_staff_appraisal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="salaryCurrent != null">
+        salary_current,
+      </if>
+      <if test="salaryAppraised != null">
+        salary_appraised,
+      </if>
+      <if test="dateAppraisedStart != null">
+        date_appraised_start,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="positionId != null">
+        position_id,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+      <if test="modifiedBy != null">
+        modified_by,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="salaryCurrent != null">
+        #{salaryCurrent,jdbcType=DECIMAL},
+      </if>
+      <if test="salaryAppraised != null">
+        #{salaryAppraised,jdbcType=DECIMAL},
+      </if>
+      <if test="dateAppraisedStart != null">
+        #{dateAppraisedStart,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="positionId != null">
+        #{positionId,jdbcType=BIGINT},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        #{modifiedBy,jdbcType=BIGINT},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.payroll.mbg.model.HmsStaffAppraisal">
+    update hms_staff_appraisal
+    <set>
+      <if test="salaryCurrent != null">
+        salary_current = #{salaryCurrent,jdbcType=DECIMAL},
+      </if>
+      <if test="salaryAppraised != null">
+        salary_appraised = #{salaryAppraised,jdbcType=DECIMAL},
+      </if>
+      <if test="dateAppraisedStart != null">
+        date_appraised_start = #{dateAppraisedStart,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="positionId != null">
+        position_id = #{positionId,jdbcType=BIGINT},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        modified_by = #{modifiedBy,jdbcType=BIGINT},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.company.payroll.mbg.model.HmsStaffAppraisal">
+    update hms_staff_appraisal
+    set salary_current = #{salaryCurrent,jdbcType=DECIMAL},
+      salary_appraised = #{salaryAppraised,jdbcType=DECIMAL},
+      date_appraised_start = #{dateAppraisedStart,jdbcType=DATE},
+      status = #{status,jdbcType=TINYINT},
+      position_id = #{positionId,jdbcType=BIGINT},
+      staff_id = #{staffId,jdbcType=BIGINT},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT},
+      comment = #{comment,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.payroll.mbg.model.HmsStaffAppraisal">
+    update hms_staff_appraisal
+    set salary_current = #{salaryCurrent,jdbcType=DECIMAL},
+      salary_appraised = #{salaryAppraised,jdbcType=DECIMAL},
+      date_appraised_start = #{dateAppraisedStart,jdbcType=DATE},
+      status = #{status,jdbcType=TINYINT},
+      position_id = #{positionId,jdbcType=BIGINT},
+      staff_id = #{staffId,jdbcType=BIGINT},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

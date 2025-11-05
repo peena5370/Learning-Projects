@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.payroll.mbg.mapper.HmsTimeoffStaffMapper">
+  <resultMap id="BaseResultMap" type="com.company.payroll.mbg.model.HmsTimeoffStaff">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="timeoff_reference_num" jdbcType="VARCHAR" property="timeoffReferenceNum" />
+    <result column="timeoff_type_id" jdbcType="BIGINT" property="timeoffTypeId" />
+    <result column="apply_date" jdbcType="DATE" property="applyDate" />
+    <result column="approved_date" jdbcType="DATE" property="approvedDate" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="staff_id" jdbcType="BIGINT" property="staffId" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.company.payroll.mbg.model.HmsTimeoffStaff">
+    <result column="reason" jdbcType="LONGVARCHAR" property="reason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, timeoff_reference_num, timeoff_type_id, apply_date, approved_date, start_date, 
+    end_date, status, staff_id, modified_date, modified_by
+  </sql>
+  <sql id="Blob_Column_List">
+    reason
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hms_timeoff_staff
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hms_timeoff_staff
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.company.payroll.mbg.model.HmsTimeoffStaff">
+    insert into hms_timeoff_staff (id, timeoff_reference_num, timeoff_type_id, 
+      apply_date, approved_date, start_date, 
+      end_date, status, staff_id, 
+      modified_date, modified_by, reason
+      )
+    values (#{id,jdbcType=BIGINT}, #{timeoffReferenceNum,jdbcType=VARCHAR}, #{timeoffTypeId,jdbcType=BIGINT}, 
+      #{applyDate,jdbcType=DATE}, #{approvedDate,jdbcType=DATE}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{staffId,jdbcType=BIGINT}, 
+      #{modifiedDate,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=BIGINT}, #{reason,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.payroll.mbg.model.HmsTimeoffStaff">
+    insert into hms_timeoff_staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="timeoffReferenceNum != null">
+        timeoff_reference_num,
+      </if>
+      <if test="timeoffTypeId != null">
+        timeoff_type_id,
+      </if>
+      <if test="applyDate != null">
+        apply_date,
+      </if>
+      <if test="approvedDate != null">
+        approved_date,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+      <if test="modifiedBy != null">
+        modified_by,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="timeoffReferenceNum != null">
+        #{timeoffReferenceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="timeoffTypeId != null">
+        #{timeoffTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=DATE},
+      </if>
+      <if test="approvedDate != null">
+        #{approvedDate,jdbcType=DATE},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        #{modifiedBy,jdbcType=BIGINT},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.payroll.mbg.model.HmsTimeoffStaff">
+    update hms_timeoff_staff
+    <set>
+      <if test="timeoffReferenceNum != null">
+        timeoff_reference_num = #{timeoffReferenceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="timeoffTypeId != null">
+        timeoff_type_id = #{timeoffTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="applyDate != null">
+        apply_date = #{applyDate,jdbcType=DATE},
+      </if>
+      <if test="approvedDate != null">
+        approved_date = #{approvedDate,jdbcType=DATE},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        modified_by = #{modifiedBy,jdbcType=BIGINT},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.company.payroll.mbg.model.HmsTimeoffStaff">
+    update hms_timeoff_staff
+    set timeoff_reference_num = #{timeoffReferenceNum,jdbcType=VARCHAR},
+      timeoff_type_id = #{timeoffTypeId,jdbcType=BIGINT},
+      apply_date = #{applyDate,jdbcType=DATE},
+      approved_date = #{approvedDate,jdbcType=DATE},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      staff_id = #{staffId,jdbcType=BIGINT},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT},
+      reason = #{reason,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.payroll.mbg.model.HmsTimeoffStaff">
+    update hms_timeoff_staff
+    set timeoff_reference_num = #{timeoffReferenceNum,jdbcType=VARCHAR},
+      timeoff_type_id = #{timeoffTypeId,jdbcType=BIGINT},
+      apply_date = #{applyDate,jdbcType=DATE},
+      approved_date = #{approvedDate,jdbcType=DATE},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      staff_id = #{staffId,jdbcType=BIGINT},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

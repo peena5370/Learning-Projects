@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.payroll.mbg.mapper.HmsStaffDetailMapper">
+  <resultMap id="BaseResultMap" type="com.company.payroll.mbg.model.HmsStaffDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="staff_code" jdbcType="VARCHAR" property="staffCode" />
+    <result column="fullname" jdbcType="VARCHAR" property="fullname" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="date_of_birth" jdbcType="DATE" property="dateOfBirth" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="ic_number" jdbcType="VARCHAR" property="icNumber" />
+    <result column="marital_status" jdbcType="VARCHAR" property="maritalStatus" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="home_address" jdbcType="VARCHAR" property="homeAddress" />
+    <result column="phone_home" jdbcType="VARCHAR" property="phoneHome" />
+    <result column="phone_mobile" jdbcType="VARCHAR" property="phoneMobile" />
+    <result column="email_company" jdbcType="VARCHAR" property="emailCompany" />
+    <result column="hired_date" jdbcType="DATE" property="hiredDate" />
+    <result column="resign_date" jdbcType="DATE" property="resignDate" />
+    <result column="manager_id" jdbcType="BIGINT" property="managerId" />
+    <result column="deleted_date" jdbcType="TIMESTAMP" property="deletedDate" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, staff_code, fullname, gender, date_of_birth, age, ic_number, marital_status, 
+    education, home_address, phone_home, phone_mobile, email_company, hired_date, resign_date, 
+    manager_id, deleted_date, modified_date, modified_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hms_staff_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hms_staff_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.company.payroll.mbg.model.HmsStaffDetail">
+    insert into hms_staff_detail (id, staff_code, fullname, 
+      gender, date_of_birth, age, 
+      ic_number, marital_status, education, 
+      home_address, phone_home, phone_mobile, 
+      email_company, hired_date, resign_date, 
+      manager_id, deleted_date, modified_date, 
+      modified_by)
+    values (#{id,jdbcType=BIGINT}, #{staffCode,jdbcType=VARCHAR}, #{fullname,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{dateOfBirth,jdbcType=DATE}, #{age,jdbcType=INTEGER}, 
+      #{icNumber,jdbcType=VARCHAR}, #{maritalStatus,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{homeAddress,jdbcType=VARCHAR}, #{phoneHome,jdbcType=VARCHAR}, #{phoneMobile,jdbcType=VARCHAR}, 
+      #{emailCompany,jdbcType=VARCHAR}, #{hiredDate,jdbcType=DATE}, #{resignDate,jdbcType=DATE}, 
+      #{managerId,jdbcType=BIGINT}, #{deletedDate,jdbcType=TIMESTAMP}, #{modifiedDate,jdbcType=TIMESTAMP}, 
+      #{modifiedBy,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.payroll.mbg.model.HmsStaffDetail">
+    insert into hms_staff_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="staffCode != null">
+        staff_code,
+      </if>
+      <if test="fullname != null">
+        fullname,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="dateOfBirth != null">
+        date_of_birth,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="icNumber != null">
+        ic_number,
+      </if>
+      <if test="maritalStatus != null">
+        marital_status,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="homeAddress != null">
+        home_address,
+      </if>
+      <if test="phoneHome != null">
+        phone_home,
+      </if>
+      <if test="phoneMobile != null">
+        phone_mobile,
+      </if>
+      <if test="emailCompany != null">
+        email_company,
+      </if>
+      <if test="hiredDate != null">
+        hired_date,
+      </if>
+      <if test="resignDate != null">
+        resign_date,
+      </if>
+      <if test="managerId != null">
+        manager_id,
+      </if>
+      <if test="deletedDate != null">
+        deleted_date,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+      <if test="modifiedBy != null">
+        modified_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="staffCode != null">
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null">
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null">
+        #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="icNumber != null">
+        #{icNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        #{maritalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null">
+        #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneHome != null">
+        #{phoneHome,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneMobile != null">
+        #{phoneMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="emailCompany != null">
+        #{emailCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="hiredDate != null">
+        #{hiredDate,jdbcType=DATE},
+      </if>
+      <if test="resignDate != null">
+        #{resignDate,jdbcType=DATE},
+      </if>
+      <if test="managerId != null">
+        #{managerId,jdbcType=BIGINT},
+      </if>
+      <if test="deletedDate != null">
+        #{deletedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.payroll.mbg.model.HmsStaffDetail">
+    update hms_staff_detail
+    <set>
+      <if test="staffCode != null">
+        staff_code = #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null">
+        fullname = #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null">
+        date_of_birth = #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="icNumber != null">
+        ic_number = #{icNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        marital_status = #{maritalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null">
+        home_address = #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneHome != null">
+        phone_home = #{phoneHome,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneMobile != null">
+        phone_mobile = #{phoneMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="emailCompany != null">
+        email_company = #{emailCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="hiredDate != null">
+        hired_date = #{hiredDate,jdbcType=DATE},
+      </if>
+      <if test="resignDate != null">
+        resign_date = #{resignDate,jdbcType=DATE},
+      </if>
+      <if test="managerId != null">
+        manager_id = #{managerId,jdbcType=BIGINT},
+      </if>
+      <if test="deletedDate != null">
+        deleted_date = #{deletedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        modified_by = #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.payroll.mbg.model.HmsStaffDetail">
+    update hms_staff_detail
+    set staff_code = #{staffCode,jdbcType=VARCHAR},
+      fullname = #{fullname,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      date_of_birth = #{dateOfBirth,jdbcType=DATE},
+      age = #{age,jdbcType=INTEGER},
+      ic_number = #{icNumber,jdbcType=VARCHAR},
+      marital_status = #{maritalStatus,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      home_address = #{homeAddress,jdbcType=VARCHAR},
+      phone_home = #{phoneHome,jdbcType=VARCHAR},
+      phone_mobile = #{phoneMobile,jdbcType=VARCHAR},
+      email_company = #{emailCompany,jdbcType=VARCHAR},
+      hired_date = #{hiredDate,jdbcType=DATE},
+      resign_date = #{resignDate,jdbcType=DATE},
+      manager_id = #{managerId,jdbcType=BIGINT},
+      deleted_date = #{deletedDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

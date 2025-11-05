@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.payroll.mbg.mapper.HmsDepartmentDetailMapper">
+  <resultMap id="BaseResultMap" type="com.company.payroll.mbg.model.HmsDepartmentDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <result column="location_address" jdbcType="VARCHAR" property="locationAddress" />
+    <result column="date_formed" jdbcType="DATE" property="dateFormed" />
+    <result column="date_closed" jdbcType="DATE" property="dateClosed" />
+    <result column="region_id" jdbcType="BIGINT" property="regionId" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+    <association property="hmsDepartmentRegion" javaType="com.company.payroll.mbg.model.HmsDepartmentRegion"
+                 resultMap="RegionResultMap"/>
+  </resultMap>
+  <resultMap id="RegionResultMap" type="com.company.payroll.mbg.model.HmsDepartmentRegion">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="region_code" jdbcType="VARCHAR" property="regionCode" />
+    <result column="region_name" jdbcType="VARCHAR" property="regionName" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    hdd.id, hdd.department_name, hdd.location_address, hdd.date_formed, hdd.date_closed,
+    hdd.region_id, hdd.modified_date, hdd.modified_by
+  </sql>
+  <sql id="Region_Column_List">
+    hdr.id, hdr.region_code, hdr.region_name, hdr.modified_date, hdr.modified_by
+  </sql>
+  <select id="selectAllByOffsetAndLimit" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Region_Column_List" />
+    from hms_department_detail hdd
+    inner join hms_department_region hdr on hdd.region_id = hdr.id
+    order by
+    <choose>
+      <when test="field != null">
+        ${field}
+        <if test="sort != null">
+          ${sort}
+        </if>
+      </when>
+      <otherwise>
+        hdd.id asc
+      </otherwise>
+    </choose>
+    limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hms_department_detail hdd
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByDepartmentName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hms_department_detail hdd
+    where department_name = #{departmentName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hms_department_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.company.payroll.mbg.model.HmsDepartmentDetail">
+    insert into hms_department_detail (id, department_name, location_address, 
+      date_formed, date_closed, region_id, 
+      modified_date, modified_by)
+    values (#{id,jdbcType=BIGINT}, #{departmentName,jdbcType=VARCHAR}, #{locationAddress,jdbcType=VARCHAR}, 
+      #{dateFormed,jdbcType=DATE}, #{dateClosed,jdbcType=DATE}, #{regionId,jdbcType=BIGINT}, 
+      #{modifiedDate,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.payroll.mbg.model.HmsDepartmentDetail">
+    insert into hms_department_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="departmentName != null">
+        department_name,
+      </if>
+      <if test="locationAddress != null">
+        location_address,
+      </if>
+      <if test="dateFormed != null">
+        date_formed,
+      </if>
+      <if test="dateClosed != null">
+        date_closed,
+      </if>
+      <if test="regionId != null">
+        region_id,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+      <if test="modifiedBy != null">
+        modified_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="locationAddress != null">
+        #{locationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFormed != null">
+        #{dateFormed,jdbcType=DATE},
+      </if>
+      <if test="dateClosed != null">
+        #{dateClosed,jdbcType=DATE},
+      </if>
+      <if test="regionId != null">
+        #{regionId,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.payroll.mbg.model.HmsDepartmentDetail">
+    update hms_department_detail
+    <set>
+      <if test="departmentName != null">
+        department_name = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="locationAddress != null">
+        location_address = #{locationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFormed != null">
+        date_formed = #{dateFormed,jdbcType=DATE},
+      </if>
+      <if test="dateClosed != null">
+        date_closed = #{dateClosed,jdbcType=DATE},
+      </if>
+      <if test="regionId != null">
+        region_id = #{regionId,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        modified_by = #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.payroll.mbg.model.HmsDepartmentDetail">
+    update hms_department_detail
+    set department_name = #{departmentName,jdbcType=VARCHAR},
+      location_address = #{locationAddress,jdbcType=VARCHAR},
+      date_formed = #{dateFormed,jdbcType=DATE},
+      date_closed = #{dateClosed,jdbcType=DATE},
+      region_id = #{regionId,jdbcType=BIGINT},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

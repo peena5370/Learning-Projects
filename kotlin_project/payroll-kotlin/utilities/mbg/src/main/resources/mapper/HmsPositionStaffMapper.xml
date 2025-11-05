@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.payroll.mbg.mapper.HmsPositionStaffMapper">
+  <resultMap id="BaseResultMap" type="com.company.payroll.mbg.model.HmsPositionStaff">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="position_id" jdbcType="BIGINT" property="positionId" />
+    <result column="staff_id" jdbcType="BIGINT" property="staffId" />
+    <result column="position_order" jdbcType="INTEGER" property="positionOrder" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, staff_id, position_order, modified_date, modified_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hms_position_staff
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPositionId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hms_position_staff
+    where position_id = #{position_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hms_position_staff
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.company.payroll.mbg.model.HmsPositionStaff">
+    insert into hms_position_staff (id, position_id, staff_id, position_order,
+      modified_date, modified_by)
+    values (#{id,jdbcType=BIGINT}, #{positionId,jdbcType=BIGINT}, #{staffId,jdbcType=BIGINT}, #{positionOrder,jdbcType=INTEGER},
+      #{modifiedDate,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.payroll.mbg.model.HmsPositionStaff">
+    insert into hms_position_staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="positionId != null">
+        position_id,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="positionOrder != null">
+        position_order,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+      <if test="modifiedBy != null">
+        modified_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="positionId != null">
+        #{position_id,jdbcType=BIGINT},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="positionOrder != null">
+        #{positionOrder,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.payroll.mbg.model.HmsPositionStaff">
+    update hms_position_staff
+    <set>
+      <if test="positionId != null">
+        position_id = #{position_id,jdbcType=BIGINT},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="positionOrder != null">
+        position_order = #{positionOrder,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        modified_by = #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.payroll.mbg.model.HmsPositionStaff">
+    update hms_position_staff
+    set position_id = #{position_id,jdbcType=BIGINT},
+      staff_id = #{staffId,jdbcType=BIGINT},
+      position_order = #{positionOrder,jdbcType=INTEGER},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
