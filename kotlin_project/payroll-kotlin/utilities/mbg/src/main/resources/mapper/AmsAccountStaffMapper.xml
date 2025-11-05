@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.payroll.mbg.mapper.AmsAccountStaffMapper">
+  <resultMap id="BaseResultMap" type="com.company.payroll.mbg.model.AmsAccountStaff">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="CHAR" property="username" />
+    <result column="password" jdbcType="CHAR" property="password" />
+    <result column="secret_key" jdbcType="CHAR" property="secretKey" />
+    <result column="staff_id" jdbcType="BIGINT" property="staffId" />
+    <result column="last_login" jdbcType="TIMESTAMP" property="lastLogin" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="last_attempt" jdbcType="INTEGER" property="lastAttempt" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, password, secret_key, staff_id, last_login, status, last_attempt, created_date, 
+    modified_date, modified_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ams_account_staff
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ams_account_staff
+    where username = #{username,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ams_account_staff
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.company.payroll.mbg.model.AmsAccountStaff">
+    insert into ams_account_staff (id, username, password, 
+      secret_key, staff_id, last_login, 
+      status, last_attempt, created_date, 
+      modified_date, modified_by)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{secretKey,jdbcType=CHAR}, #{staffId,jdbcType=BIGINT}, #{lastLogin,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT}, #{lastAttempt,jdbcType=INTEGER}, #{createdDate,jdbcType=TIMESTAMP}, 
+      #{modifiedDate,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.payroll.mbg.model.AmsAccountStaff">
+    insert into ams_account_staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="secretKey != null">
+        secret_key,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="lastLogin != null">
+        last_login,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="lastAttempt != null">
+        last_attempt,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+      <if test="modifiedBy != null">
+        modified_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="secretKey != null">
+        #{secretKey,jdbcType=CHAR},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="lastLogin != null">
+        #{lastLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="lastAttempt != null">
+        #{lastAttempt,jdbcType=INTEGER},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.payroll.mbg.model.AmsAccountStaff">
+    update ams_account_staff
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="secretKey != null">
+        secret_key = #{secretKey,jdbcType=CHAR},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="lastLogin != null">
+        last_login = #{lastLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="lastAttempt != null">
+        last_attempt = #{lastAttempt,jdbcType=INTEGER},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        modified_by = #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.payroll.mbg.model.AmsAccountStaff">
+    update ams_account_staff
+    set username = #{username,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      secret_key = #{secretKey,jdbcType=CHAR},
+      staff_id = #{staffId,jdbcType=BIGINT},
+      last_login = #{lastLogin,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      last_attempt = #{lastAttempt,jdbcType=INTEGER},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

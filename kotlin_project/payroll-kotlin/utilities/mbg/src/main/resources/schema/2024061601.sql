@@ -1,0 +1,17 @@
+INSERT INTO `hms_config` 
+VALUES('7208018788631973889', 'EPF', 'Employee EPF rate 1', '0.11'), 
+('7208019927230320640', 'EPF', 'Employee SOCSO rate 1', '0.5'),
+('7208019927230320641', 'EPF', 'Employee EIS rate 1', '0.2'),
+('7208019927230320642', 'EPF', 'Employeer EPF rate 1', '0.13'),
+('7208019927230320643', 'EPF', 'Employer SOCSO rate 1', '1.75'),
+('7208019927230320644', 'EPF', 'Employer EIS rate 1', '0.2'),
+('7208019927230320645', 'EPF', 'Employee EPF rate 2', '0.09'),
+('7208019927230320646', 'EPF', 'Employee SOCSO rate 2', '0.5'),
+('7208019927230320647', 'EPF', 'Employee EIS rate 2', '0.2'),
+('7208019927230320648', 'EPF', 'Employeer EPF rate 2', '0.11'),
+('7208019927230320649', 'EPF', 'Employer SOCSO rate 2', '1.75'),
+('7208020157321449472', 'EPF', 'Employer EIS rate 2', '0.2'),
+('7208020157321449473', 'Email', 'SMTP hostname', 'localhost'),
+('7208020157321449474', 'Email', 'SMTP port number', '5050'),
+('7208020157321449475', 'Email', 'account', 'user'),
+('7208020157321449476', 'Email', 'password', 'password');

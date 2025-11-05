@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.payroll.mbg.mapper.HmsPayrollStaffMapper">
+  <resultMap id="BaseResultMap" type="com.company.payroll.mbg.model.HmsPayrollStaff">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="salary_id" jdbcType="BIGINT" property="salaryId" />
+    <result column="staff_id" jdbcType="BIGINT" property="staffId" />
+    <result column="overtime_pay" jdbcType="DECIMAL" property="overtimePay" />
+    <result column="allowance_misc" jdbcType="DECIMAL" property="allowanceMisc" />
+    <result column="allowance_transport" jdbcType="DECIMAL" property="allowanceTransport" />
+    <result column="deduction_loan" jdbcType="DECIMAL" property="deductionLoan" />
+    <result column="deduction_other" jdbcType="DECIMAL" property="deductionOther" />
+    <result column="employee_epf" jdbcType="DECIMAL" property="employeeEpf" />
+    <result column="employee_socso" jdbcType="DECIMAL" property="employeeSocso" />
+    <result column="employee_eis" jdbcType="DECIMAL" property="employeeEis" />
+    <result column="employer_epf" jdbcType="DECIMAL" property="employerEpf" />
+    <result column="employer_socso" jdbcType="DECIMAL" property="employerSocso" />
+    <result column="employer_eis" jdbcType="DECIMAL" property="employerEis" />
+    <result column="mtd_pcb" jdbcType="DECIMAL" property="mtdPcb" />
+    <result column="net_pay" jdbcType="DECIMAL" property="netPay" />
+    <result column="payroll_period" jdbcType="VARCHAR" property="payrollPeriod" />
+    <result column="date_issue" jdbcType="DATE" property="dateIssue" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, salary_id, staff_id, overtime_pay, allowance_misc, allowance_transport, deduction_loan, 
+    deduction_other, employee_epf, employee_socso, employee_eis, employer_epf, employer_socso, 
+    employer_eis, mtd_pcb, net_pay, payroll_period, date_issue, modified_date, modified_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hms_payroll_staff
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hms_payroll_staff
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.company.payroll.mbg.model.HmsPayrollStaff">
+    insert into hms_payroll_staff (id, salary_id, staff_id, 
+      overtime_pay, allowance_misc, allowance_transport, 
+      deduction_loan, deduction_other, employee_epf, 
+      employee_socso, employee_eis, employer_epf, 
+      employer_socso, employer_eis, mtd_pcb, 
+      net_pay, payroll_period, date_issue, 
+      modified_date, modified_by)
+    values (#{id,jdbcType=BIGINT}, #{salaryId,jdbcType=BIGINT}, #{staffId,jdbcType=BIGINT}, 
+      #{overtimePay,jdbcType=DECIMAL}, #{allowanceMisc,jdbcType=DECIMAL}, #{allowanceTransport,jdbcType=DECIMAL}, 
+      #{deductionLoan,jdbcType=DECIMAL}, #{deductionOther,jdbcType=DECIMAL}, #{employeeEpf,jdbcType=DECIMAL}, 
+      #{employeeSocso,jdbcType=DECIMAL}, #{employeeEis,jdbcType=DECIMAL}, #{employerEpf,jdbcType=DECIMAL}, 
+      #{employerSocso,jdbcType=DECIMAL}, #{employerEis,jdbcType=DECIMAL}, #{mtdPcb,jdbcType=DECIMAL}, 
+      #{netPay,jdbcType=DECIMAL}, #{payrollPeriod,jdbcType=VARCHAR}, #{dateIssue,jdbcType=DATE}, 
+      #{modifiedDate,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.payroll.mbg.model.HmsPayrollStaff">
+    insert into hms_payroll_staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="salaryId != null">
+        salary_id,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="overtimePay != null">
+        overtime_pay,
+      </if>
+      <if test="allowanceMisc != null">
+        allowance_misc,
+      </if>
+      <if test="allowanceTransport != null">
+        allowance_transport,
+      </if>
+      <if test="deductionLoan != null">
+        deduction_loan,
+      </if>
+      <if test="deductionOther != null">
+        deduction_other,
+      </if>
+      <if test="employeeEpf != null">
+        employee_epf,
+      </if>
+      <if test="employeeSocso != null">
+        employee_socso,
+      </if>
+      <if test="employeeEis != null">
+        employee_eis,
+      </if>
+      <if test="employerEpf != null">
+        employer_epf,
+      </if>
+      <if test="employerSocso != null">
+        employer_socso,
+      </if>
+      <if test="employerEis != null">
+        employer_eis,
+      </if>
+      <if test="mtdPcb != null">
+        mtd_pcb,
+      </if>
+      <if test="netPay != null">
+        net_pay,
+      </if>
+      <if test="payrollPeriod != null">
+        payroll_period,
+      </if>
+      <if test="dateIssue != null">
+        date_issue,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+      <if test="modifiedBy != null">
+        modified_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="salaryId != null">
+        #{salaryId,jdbcType=BIGINT},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="overtimePay != null">
+        #{overtimePay,jdbcType=DECIMAL},
+      </if>
+      <if test="allowanceMisc != null">
+        #{allowanceMisc,jdbcType=DECIMAL},
+      </if>
+      <if test="allowanceTransport != null">
+        #{allowanceTransport,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionLoan != null">
+        #{deductionLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionOther != null">
+        #{deductionOther,jdbcType=DECIMAL},
+      </if>
+      <if test="employeeEpf != null">
+        #{employeeEpf,jdbcType=DECIMAL},
+      </if>
+      <if test="employeeSocso != null">
+        #{employeeSocso,jdbcType=DECIMAL},
+      </if>
+      <if test="employeeEis != null">
+        #{employeeEis,jdbcType=DECIMAL},
+      </if>
+      <if test="employerEpf != null">
+        #{employerEpf,jdbcType=DECIMAL},
+      </if>
+      <if test="employerSocso != null">
+        #{employerSocso,jdbcType=DECIMAL},
+      </if>
+      <if test="employerEis != null">
+        #{employerEis,jdbcType=DECIMAL},
+      </if>
+      <if test="mtdPcb != null">
+        #{mtdPcb,jdbcType=DECIMAL},
+      </if>
+      <if test="netPay != null">
+        #{netPay,jdbcType=DECIMAL},
+      </if>
+      <if test="payrollPeriod != null">
+        #{payrollPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="dateIssue != null">
+        #{dateIssue,jdbcType=DATE},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.payroll.mbg.model.HmsPayrollStaff">
+    update hms_payroll_staff
+    <set>
+      <if test="salaryId != null">
+        salary_id = #{salaryId,jdbcType=BIGINT},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="overtimePay != null">
+        overtime_pay = #{overtimePay,jdbcType=DECIMAL},
+      </if>
+      <if test="allowanceMisc != null">
+        allowance_misc = #{allowanceMisc,jdbcType=DECIMAL},
+      </if>
+      <if test="allowanceTransport != null">
+        allowance_transport = #{allowanceTransport,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionLoan != null">
+        deduction_loan = #{deductionLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionOther != null">
+        deduction_other = #{deductionOther,jdbcType=DECIMAL},
+      </if>
+      <if test="employeeEpf != null">
+        employee_epf = #{employeeEpf,jdbcType=DECIMAL},
+      </if>
+      <if test="employeeSocso != null">
+        employee_socso = #{employeeSocso,jdbcType=DECIMAL},
+      </if>
+      <if test="employeeEis != null">
+        employee_eis = #{employeeEis,jdbcType=DECIMAL},
+      </if>
+      <if test="employerEpf != null">
+        employer_epf = #{employerEpf,jdbcType=DECIMAL},
+      </if>
+      <if test="employerSocso != null">
+        employer_socso = #{employerSocso,jdbcType=DECIMAL},
+      </if>
+      <if test="employerEis != null">
+        employer_eis = #{employerEis,jdbcType=DECIMAL},
+      </if>
+      <if test="mtdPcb != null">
+        mtd_pcb = #{mtdPcb,jdbcType=DECIMAL},
+      </if>
+      <if test="netPay != null">
+        net_pay = #{netPay,jdbcType=DECIMAL},
+      </if>
+      <if test="payrollPeriod != null">
+        payroll_period = #{payrollPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="dateIssue != null">
+        date_issue = #{dateIssue,jdbcType=DATE},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        modified_by = #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.payroll.mbg.model.HmsPayrollStaff">
+    update hms_payroll_staff
+    set salary_id = #{salaryId,jdbcType=BIGINT},
+      staff_id = #{staffId,jdbcType=BIGINT},
+      overtime_pay = #{overtimePay,jdbcType=DECIMAL},
+      allowance_misc = #{allowanceMisc,jdbcType=DECIMAL},
+      allowance_transport = #{allowanceTransport,jdbcType=DECIMAL},
+      deduction_loan = #{deductionLoan,jdbcType=DECIMAL},
+      deduction_other = #{deductionOther,jdbcType=DECIMAL},
+      employee_epf = #{employeeEpf,jdbcType=DECIMAL},
+      employee_socso = #{employeeSocso,jdbcType=DECIMAL},
+      employee_eis = #{employeeEis,jdbcType=DECIMAL},
+      employer_epf = #{employerEpf,jdbcType=DECIMAL},
+      employer_socso = #{employerSocso,jdbcType=DECIMAL},
+      employer_eis = #{employerEis,jdbcType=DECIMAL},
+      mtd_pcb = #{mtdPcb,jdbcType=DECIMAL},
+      net_pay = #{netPay,jdbcType=DECIMAL},
+      payroll_period = #{payrollPeriod,jdbcType=VARCHAR},
+      date_issue = #{dateIssue,jdbcType=DATE},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

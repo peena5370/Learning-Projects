@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.payroll.mbg.mapper.HmsLoanStaffMapper">
+  <resultMap id="BaseResultMap" type="com.company.payroll.mbg.model.HmsLoanStaff">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="reference_num" jdbcType="VARCHAR" property="referenceNum" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="date_repay_from" jdbcType="DATE" property="dateRepayFrom" />
+    <result column="date_repay_to" jdbcType="DATE" property="dateRepayTo" />
+    <result column="repay_balance" jdbcType="DECIMAL" property="repayBalance" />
+    <result column="apply_date" jdbcType="DATE" property="applyDate" />
+    <result column="approved_date" jdbcType="DATE" property="approvedDate" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="staff_id" jdbcType="BIGINT" property="staffId" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, reference_num, reason, amount, date_repay_from, date_repay_to, repay_balance, 
+    apply_date, approved_date, status, staff_id, modified_date, modified_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hms_loan_staff
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hms_loan_staff
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.company.payroll.mbg.model.HmsLoanStaff">
+    insert into hms_loan_staff (id, reference_num, reason, 
+      amount, date_repay_from, date_repay_to, 
+      repay_balance, apply_date, approved_date, 
+      status, staff_id, modified_date, 
+      modified_by)
+    values (#{id,jdbcType=BIGINT}, #{referenceNum,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{dateRepayFrom,jdbcType=DATE}, #{dateRepayTo,jdbcType=DATE}, 
+      #{repayBalance,jdbcType=DECIMAL}, #{applyDate,jdbcType=DATE}, #{approvedDate,jdbcType=DATE}, 
+      #{status,jdbcType=TINYINT}, #{staffId,jdbcType=BIGINT}, #{modifiedDate,jdbcType=TIMESTAMP}, 
+      #{modifiedBy,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.payroll.mbg.model.HmsLoanStaff">
+    insert into hms_loan_staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="referenceNum != null">
+        reference_num,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="dateRepayFrom != null">
+        date_repay_from,
+      </if>
+      <if test="dateRepayTo != null">
+        date_repay_to,
+      </if>
+      <if test="repayBalance != null">
+        repay_balance,
+      </if>
+      <if test="applyDate != null">
+        apply_date,
+      </if>
+      <if test="approvedDate != null">
+        approved_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+      <if test="modifiedBy != null">
+        modified_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="referenceNum != null">
+        #{referenceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="dateRepayFrom != null">
+        #{dateRepayFrom,jdbcType=DATE},
+      </if>
+      <if test="dateRepayTo != null">
+        #{dateRepayTo,jdbcType=DATE},
+      </if>
+      <if test="repayBalance != null">
+        #{repayBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=DATE},
+      </if>
+      <if test="approvedDate != null">
+        #{approvedDate,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.payroll.mbg.model.HmsLoanStaff">
+    update hms_loan_staff
+    <set>
+      <if test="referenceNum != null">
+        reference_num = #{referenceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="dateRepayFrom != null">
+        date_repay_from = #{dateRepayFrom,jdbcType=DATE},
+      </if>
+      <if test="dateRepayTo != null">
+        date_repay_to = #{dateRepayTo,jdbcType=DATE},
+      </if>
+      <if test="repayBalance != null">
+        repay_balance = #{repayBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDate != null">
+        apply_date = #{applyDate,jdbcType=DATE},
+      </if>
+      <if test="approvedDate != null">
+        approved_date = #{approvedDate,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null">
+        modified_by = #{modifiedBy,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.payroll.mbg.model.HmsLoanStaff">
+    update hms_loan_staff
+    set reference_num = #{referenceNum,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      date_repay_from = #{dateRepayFrom,jdbcType=DATE},
+      date_repay_to = #{dateRepayTo,jdbcType=DATE},
+      repay_balance = #{repayBalance,jdbcType=DECIMAL},
+      apply_date = #{applyDate,jdbcType=DATE},
+      approved_date = #{approvedDate,jdbcType=DATE},
+      status = #{status,jdbcType=TINYINT},
+      staff_id = #{staffId,jdbcType=BIGINT},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
